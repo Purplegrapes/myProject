@@ -1,53 +1,103 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <style type="text/css">
-        *{
-            margin:0;
-            padding:0;
+        * {
+            margin: 0;
+            padding: 0;
         }
-        body{
-            padding:0 40px 0 40px;
-            background:black;
+
+        body {
+            padding: 0 40px 0 40px;
+            background: black;
         }
-        .header{
-            width:100%;
-            height:50px;
-            background:#252323;
+
+        .container {
+            height: auto;
         }
-        .header ul li{
-            float:right;
-            margin-left:30px;
-            line-height:50px;
-            color:#ffffff;
+
+        .header {
+            width: 100%;
+            height: 50px;
+            background: #252323;
         }
-        .footer{
-            width:100%;
-            height:50px;
-            background:#252323;
-            text-align:center;
-            line-height:50px;
-            color:#ffffff;
+
+            .header ul li {
+                float: right;
+                margin-left: 30px;
+                line-height: 50px;
+                color: #ffffff;
+            }
+
+        .footer {
+            width: 100%;
+            height: 50px;
+            background: #252323;
+            text-align: center;
+            line-height: 50px;
+            color: #ffffff;
             /*position:fixed;
             bottom:0;*/
         }
-        .content{
-            height:800px;
-            background:#cacaca;
-            padding:20px;
+
+        .content {
+            height: auto;
+            background: #cacaca;
+            padding: 20px;
         }
-        .content-right{
-            width:400px;
-            height:400px;
-            background:#ffffff;
-            float:right;
+
+        .content-left {
+            margin-right: 420px;
         }
-        label{
-            text-align:right;
+
+        .content-right {
+            width: 400px;
+            height: 400px;
+            background: #ffffff;
+            float: right;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: 2px solid #464141;
+            border-right: 2px solid #464141;
         }
+
+        label {
+            text-align: right;
+        }
+
+        .content-lefts {
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: 2px solid #464141;
+            border-right: 2px solid #464141;
+            background: #ffffff;
+            margin-bottom: 20px;
+            line-height: 20px;
+            font-size: 10px;
+        }
+
+        .form-group {
+            margin: 20px;
+        }
+
+            .form-group label > span {
+                float: left;
+                width: 25%;
+                text-align: right;
+                padding-right: 10px;
+                margin-top: 10px;
+                color: #888;
+            }
+
+            .form-group input,.form-group select {
+                display: inline-block;
+                text-align: left;
+                padding-right: 10px;
+                margin-top: 10px;
+            }
     </style>
 </head>
 <body>
@@ -62,47 +112,122 @@
             </ul>
         </div>
         <div class="content">
-            <div class="content-left">
-                <div class="content-left1">
-                    <h2>第一篇文章</h2>
-                </div>
-            </div>
             <div class="content-right">
                 <h2>侧栏标题</h2>
-                <form>
+                <form class="form-inline">
                     <div class="form-group">
-                        <label for="username">用户名：</label>
-                        <input type="text" placeholder="请输入用户名" name="uesername" required="required"/>
+                        <label>
+                            <span class="message">用户名：</span>
+                            <input class="form-control" type="text" placeholder="请输入用户名" name="uesername" required="required" />
+                        </label>
                     </div>
                     <div class="form-group">
-                        <label for="password">密码:</label>
-                        <input type="password" placeholder="请输入密码" name="password" />
+                        <label>
+                            <span class="message">密码：</span>
+                            <input class="form-control" type="text" placeholder="请输入密码" name="uesername" required="required" />
+                        </label>
                     </div>
                     <div class="form-group">
-                        <label for="password">请确认密码:</label>
-                        <input type="password" placeholder="确认密码" name="password" />
+                        <label>
+                            <span class="message">确认密码：</span>
+                            <input class="form-control" type="text" placeholder="请输入密码" name="uesername" required="required" />
+                        </label>
                     </div>
                     <div class="form-group">
-                        <label for="sex">性别：</label>
-                        <input type="radio" checked="checked" name="sex" value="male" id="male">
+                        <label>
+                            <span class="message">性别：</span>
+                            <input type="radio" checked="checked" name="sex" value="male" id="male">
+                        </label>
+
                         <label for="male">男</label>
                         <input type="radio" name="sex" value="female" id="female">
                         <label for="female">女</label>
-                        
+
 
                     </div>
                     <div class="form-group">
-                        <label for="city">城市：</label>
-                        <select name="city" id="city">
-                            <option value="北京">北京</option>
-                            <option value="上海">上海</option>
-                            <option value="深圳">深圳</option>
-                        </select>                      
+                        <label><span>城市：</span>
+                            <select name="city" id="city">
+                                <option value="北京">北京</option>
+                                <option value="上海">上海</option>
+                                <option value="深圳">深圳</option>
+                            </select>
+                        </label>
+                       
                     </div>
-                    
+
                 </form>
             </div>
+            <div class="content-left">
+                <div class="content-lefts">
+                    <h2>第一篇文章</h2>
+                    <h3>二级标题</h3>
+                    <p>文章作者 文章发表时间</p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                    <p><img src="../images/head.jpg" /></p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                </div>
+                <div class="content-lefts">
+                    <h2>第一篇文章</h2>
+                    <h3>二级标题</h3>
+                    <p>文章作者 文章发表时间</p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                    <p><img src="../images/head.jpg" /></p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                </div>
+                <div class="content-lefts">
+                    <h2>第一篇文章</h2>
+                    <h3>二级标题</h3>
+                    <p>文章作者 文章发表时间</p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                    <p><img src="../images/head.jpg" /></p>
+                    <p>
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈，
+                        方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈方法开发了魔法门VV妈
+                    </p>
+                </div>
+            </div>
         </div>
+
         <div class="footer">版权所有@</div>
     </div>
 </body>

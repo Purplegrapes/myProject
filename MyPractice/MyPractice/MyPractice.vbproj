@@ -120,9 +120,12 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\task8.css" />
+    <Content Include="FirstStep\task10.html" />
     <Content Include="FirstStep\task3.html" />
     <Content Include="FirstStep\task4.html" />
     <Content Include="FirstStep\task5.html" />
+    <Content Include="FirstStep\task8.html" />
     <Content Include="images\head.jpg" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
