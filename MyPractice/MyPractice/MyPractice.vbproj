@@ -125,6 +125,7 @@
     <Content Include="css\task8.css" />
     <Content Include="FirstStep\task10.html" />
     <Content Include="FirstStep\task11.html" />
+    <Content Include="scripts\task22.js" />
     <Content Include="FirstStep\task3.html" />
     <Content Include="FirstStep\task4.html" />
     <Content Include="FirstStep\task5.html" />
@@ -136,11 +137,16 @@
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\task16.js" />
     <Content Include="scripts\task18.js" />
+    <Content Include="scripts\task20.js" />
+    <Content Include="scripts\task21.js" />
     <Content Include="SecendStep\task13.html" />
     <Content Include="SecendStep\task14.html" />
     <Content Include="SecendStep\task15.html" />
     <Content Include="SecendStep\task16.html" />
     <Content Include="SecendStep\task18.html" />
+    <Content Include="SecendStep\task20.html" />
+    <Content Include="SecendStep\task21.html" />
+    <Content Include="SecendStep\task22.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
