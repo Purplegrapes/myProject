@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>task_29</title>
+    <style>
+        .col {
+           height: 100px;
+        }
+
+        input {
+            width: 60%;
+            height: 32px;
+            border-radius: 5px;
+            border-color: #ccc;
+        }
+
+        .confirm {
+            display: inline-block;
+            background-color: #2563AD;
+            color: #fff;
+            height: 35px;
+            width: 70px;
+            text-align: center;
+            font-size: 24px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .title {
+            display: inline-block;
+            width: 70px;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .mes {
+            color: #ccc;
+            font-size: 20px;
+            vertical-align: top;
+            position: absolute;
+            left: 95px;
+        }
+
+        .sign {
+            width: 70px;
+            height: 30px;
+            background: #246496;
+            color: #ffffff;
+            border-radius: 5px;
+            line-height: 30px;
+            text-align: center;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <form>
+        <div class="col">
+            <span class="title">姓名</span><span class="name">
+                <input type="text" />
+            </span>
+            <!--<span class="confirm" type="button" onclick="validate()">验证</span>-->
+            <div id="name_mes" class="mes" style="display:none">必填，长度为4~16个字符</div>
+        </div>
+        <div class="col">
+            <span class="title">密码</span><span class="pass">
+                <input type="text" />
+            </span>
+            <!--<span class="confirm" type="button" onclick="validate()">验证</span>-->
+            <div id="pass_mes" class="mes" style="display:none">必填，长度为4~16个字符</div>
+        </div>
+        <div class="col">
+            <span class="title">确认密码</span><span class="">
+                <input type="text" />
+            </span>
+            <!--<span class="confirm" type="button" onclick="validate()">验证</span>-->
+            <div id="conpass_mes" class="mes" style="display:none">必填，长度为4~16个字符</div>
+        </div>
+        <div class="col">
+            <span class="title">邮箱</span><span class="">
+                <input type="text" />
+            </span>
+            <!--<span class="confirm" type="button" onclick="validate()">验证</span>-->
+            <div id="email_mes" class="mes" style="display:none">必填，长度为4~16个字符</div>
+        </div>
+        <div class="col">
+            <span class="title">手机</span><span class="">
+                <input type="text" />
+            </span>
+            <!--<span class="confirm" type="button" onclick="validate()">验证</span>-->
+            <div id="tel_mes" class="mes" style="display:none">必填，长度为4~16个字符</div>
+        </div>
+        <div class="sign">
+            提交
+        </div>
+    </form>
+
+    <script>
+
+        var inputs = document.getElementsByTagName('input');
+        var mess = document.getElementsByClassName("mes");
+        var m = 0;
+        function validate(index) {
+            var inputValue = inputs[index].value;
+            mess[index].style.display = "block";
+            
+            switch (parseInt(index)) {
+                case 0: if (countLength(inputValue) == 0) {
+
+                    mess[index].innerHTML = "姓名不能为空";
+                    mess[index].style.color = "red";
+                    inputs[0].style.border = '1px solid red';
+
+                }
+                else if (countLength(inputValue) >= 4 && countLength(inputValue) <= 16) {
+                    mess[index].innerHTML = '格式正确';
+                    mess[index].style.color = 'lightgreen';
+                    inputs[0].style.border = '1px solid lightgreen';
+                    m++;
+                } else {
+                    mess[index].innerHTML = '请输入长度为4~16位字符';
+                    mess[index].style.color = 'red'
+                    inputs[0].style.border = '1px solid red';
+                    
+                }
+                    break;
+                case 1: if (inputValue.match(/^[a-zA-Z0-9]{6,16}$/)) {
+
+                    mess[index].innerHTML = '格式正确';
+                    mess[index].style.color = 'lightgreen';
+                    inputs[1].style.border = '1px solid lightgreen';
+                    m++;
+                }
+                else {
+                    mess[index].innerHTML = "请输入6到16位字符且只能为数字和字母";
+                    mess[index].style.color = "red";
+                    inputs[1].style.border = '1px solid red';
+                   
+                }
+                    break;
+                case 2:
+                    if (inputValue === inputs[1].value.trim()&&inputs[1].value!="") {
+                        mess[index].innerHTML = '密码正确';
+                        mess[index].style.color = 'lightgreen';
+                        inputs[2].style.border = '1px solid lightgreen';
+                        m++;
+                        
+                    } else {
+                        mess[index].innerHTML = "两次密码需一致";
+                        mess[index].style.color = "red";
+                        inputs[2].style.border = '1px solid red';
+                        
+                    }
+                    break;
+                case 3:
+                    var reg = new RegExp('^([a-zA-Z0-9_\.\-])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$', 'i');
+                    if (inputValue.match(reg)) {
+                        mess[index].innerHTML = '邮箱可用';
+                        mess[index].style.color = 'lightgreen';
+                        inputs[3].style.border = '1px solid lightgreen';
+                        m++;
+                    } else {
+                        mess[index].innerHTML = "邮箱格式错误";
+                        mess[index].style.color = "red";
+                        inputs[3].style.border = '1px solid red';
+                        
+
+                    }
+                    break;
+                case 4:
+                    if (inputValue.match(/^1\d{10}$/)) {
+                        mess[index].innerHTML = '号码可用';
+                        mess[index].style.color = 'lightgreen';
+                        inputs[4].style.border = '1px solid lightgreen';
+                        m++;
+                    }
+                    else {
+                        mess[index].innerHTML = "请输入正确的手机号";
+                        mess[index].style.color = "red";
+                        inputs[4].style.border = '1px solid red'
+                        
+                    }
+            }
+
+        }
+        function countLength(str) {
+            var inputLength = 0;
+            for (var i = 0; i < str.length; i++) {
+                var countCode = str.charCodeAt(i);
+                if (countCode >= 0 && countCode <= 128) {
+                    inputLength += 1;
+                } else {
+                    inputLength += 2;
+                }
+            }
+            return inputLength;
+
+
+        }
+
+        function blurCa(index) {
+            inputs[index].addEventListener('blur', function () {
+                validate(index);
+            })
+        }
+        for (var i = 0; i < inputs.length; i++) {
+            blurCa(i)
+        }
+        var confirm = document.getElementsByClassName("sign")[0];
+        
+        confirm.addEventListener('click', function () {
+            for (var j = 0; j < inputs.length; j++) {
+                validate(j);
+                console.log(m);
+            }
+            
+            if (m >= 10) {
+                alert("提交成功")
+            }
+            else {
+                alert("提交失败")
+            }
+            
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
