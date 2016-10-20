@@ -163,6 +163,9 @@
     <Content Include="SecendStep\task23.html" />
     <Content Include="SecendStep\task24.html" />
     <Content Include="SecendStep\formvalidatae.html" />
+    <Content Include="SecendStep\task33\css\index.css" />
+    <Content Include="SecendStep\task33\index.html" />
+    <Content Include="SecendStep\task33\index.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
