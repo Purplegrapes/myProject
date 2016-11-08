@@ -134,6 +134,15 @@
     <Content Include="Dialog\Zepto.js" />
     <Content Include="FirstStep\task10.html" />
     <Content Include="FirstStep\task11.html" />
+    <Content Include="fxq\css\map.css" />
+    <Content Include="fxq\css\rotate.css" />
+    <Content Include="fxq\images\yellow.png" />
+    <Content Include="fxq\index.html" />
+    <Content Include="fxq\js\jquery-1.10.2.js" />
+    <Content Include="fxq\js\map.js" />
+    <Content Include="fxq\js\move.js" />
+    <Content Include="fxq\css\plane.css" />
+    <Content Include="fxq\js\rotate.js" />
     <Content Include="LightBox\index.html" />
     <Content Include="scripts\task22.js" />
     <Content Include="FirstStep\task3.html" />
@@ -163,9 +172,15 @@
     <Content Include="SecendStep\task23.html" />
     <Content Include="SecendStep\task24.html" />
     <Content Include="SecendStep\formvalidatae.html" />
+    <Content Include="SecendStep\task34\css\index.css" />
+    <Content Include="SecendStep\task34\index.html" />
+    <Content Include="SecendStep\task34\index.js" />
     <Content Include="SecendStep\task33\css\index.css" />
     <Content Include="SecendStep\task33\index.html" />
     <Content Include="SecendStep\task33\index.js" />
+    <Content Include="SecendStep\task37\37.js" />
+    <Content Include="SecendStep\task37\css37.css" />
+    <Content Include="SecendStep\task37\index37.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

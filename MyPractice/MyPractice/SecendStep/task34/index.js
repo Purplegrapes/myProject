@@ -3,7 +3,8 @@
     var HEIGHT = 42;
     var sText = document.getElementById("sText");
     var btn = document.getElementById("btn");
-   
+    var refresh = document.getElementById("refresh");
+    var rowList = document.getElementById('show-row');
     var controller = (function () {
         function mkMaze(container, config) {
             var x = config.x;
@@ -158,6 +159,41 @@
             controller.move(2);
         }
     }
+    var handTextArea = (function () {
+        var matchEnterExp = /\r|\n/g;
+        var matchConsoleExp = /\n/g;
+        var row = 0;
+        function _addRow(enterNum) {
+            if (row !== enterNum) {
+                var el;
+                var temp = document.createDocumentFragment();
+                rowList.innerHTML = '';
+                for (var i = 0; i <=enterNum; i++) {
+                    el = document.createElement("div");
+                    el.className = "row-el";
+                    el.innerHTML = i;
+                    temp.appendChild(el);
+                }
+                rowList.appendChild(temp);
+                row = enterNum;
+            }
+        }
+        return {
+            matchEnter: function () {
+                var value = sText.value;
+                var enterNum = value.match(matchEnterExp) && value.match(matchConsoleExp).length;
+                _addRow(enterNum);
+            },
+            matchConsole: function () {
+                var value = sText.value;
+                var consoleArr = value.split(matchConsoleExp);
+                console.log(consoleArr);
+                return consoleArr;
+            },
+            
+        }
+    })
+
     btn.addEventListener('click', function () {
         var text = sText.value;
         text = text.replace(/^\s+|\s+$/g, '').toUpperCase();
@@ -167,8 +203,5 @@
         sText.value='';
 
     })
-
-
-   
-   
+    
 }())

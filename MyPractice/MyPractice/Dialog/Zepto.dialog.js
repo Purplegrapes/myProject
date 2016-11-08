@@ -43,9 +43,7 @@
 			this.win.css("-webkit-transform","scale(0,0)");
 			window.setTimeout(function(){
 				_this_.win.css("-webkit-transform","scale(1,1)");
-			},200)
-
-			
+			},200)		
 		},
 		create:function(){
 			var _this_=this,
@@ -58,16 +56,12 @@
 		    body=this.body;
 		    Dialog.zindex++;
 		    this.mask.css("z-index",Dialog.zindex);
-
 		    //如果没有配置参数，就弹出一个等待图标形式的弹框
 		    if(this.isConfig){
 		    	win.append(header.addClass("loading"));
 		    	mask.append(win);
-		    	body.append(mask);
-		    	
-		    		this.animate();
-		    	
-		    	
+		    	body.append(mask)	    	
+		    		this.animate();		    		    	
 		    }else{
 		    	//根据配置参数创建相应弹框
 		    	header.addClass(config.type);
@@ -110,11 +104,9 @@
 		    		mask.click(function(){
 		    			_this_.close();
 		    		})
-		    		
-		    	}
+		    			    	}
 
 		    };
-
 		},
 		close:function(){
 			this.mask.remove();

@@ -25,3 +25,29 @@
   transition: all 1s;
  
 }
+#sText{
+    background:black;
+    width:400px;
+    min-height:200px;
+    margin:0 auto;
+    color:aquamarine;
+}
+.btnss{
+    height:30px;
+    padding:10px 0;
+}
+.show-row{
+    width:35px;
+    min-height:205px;
+    background:rgb(206,206,206);
+    float:left;
+    overflow-y:scroll;
+}
+.row-el{
+    width:100%;
+    height:20px;
+    line-height:20px;
+    color:#fff;
+    border-radius:100%;
+    text-align:center;
+}
