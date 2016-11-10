@@ -78,16 +78,10 @@ ctx6.closePath();
 ctx6.arc(width * 3 / 4, width * 4 / 5, width / 10, 0, 2 * Math.PI, false);
 ctx6.fillStyle = "#fff";
 ctx6.fill();
-$(function () {
-    $('.container').click(function () {
-        
-        change();
-        firstStep();
-    });
-})
+
 function change() {
     $('.container').addClass('animate');
-    console.log($('.container').hasClass('animate'))
+    //console.log($('.container').hasClass('animate'))
     
     for (var i = 0; i < arr.length; i++) {
         var random = Math.floor(Math.random() * arr.length);
@@ -96,7 +90,9 @@ function change() {
         arr[i] = temp;
     }
     $('.container').html(arr);
-     number = parseInt(arr[1].getAttribute("data-num")); 
+    number = parseInt(arr[1].getAttribute("data-num"));
+    nums.push(number);
+    console.log(nums);
     $('.container').get(0).addEventListener("animationend", function () {
         $('.container').removeClass('animate');
     })

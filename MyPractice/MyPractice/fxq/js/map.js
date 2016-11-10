@@ -580,28 +580,4 @@
     //蓝色起点
     arrow2(520, 370, 8, 5, "rgb(0,152,158)");
 }
-function start() {
-    var canvas = document.getElementById('canvas');
-    
-    var context = canvas.getContext('2d');
-    context.beginPath();
-    context.fillStyle = "#FFFFFF";
-    context.arc(55, 55, 15, 0, Math.PI * 2, true);
-    context.fill();
-    context.closePath();
-    //cxt.fillStyle = "#FF00FF"
-    //cxt.arc(55, 55, 15, 0, Math.PI * 2, true)
-    //cxt.fill()
 
-    //cxt.fillStyle = "#FF0000"
-    //cxt.arc(115, 115, 15, 0, Math.PI * 2, true)
-    //cxt.fill()
-
-    //cxt.fillStyle = "#FFFF00"
-    //cxt.arc(300, 300, 50, 0, Math.PI * 2, true)
-    //cxt.fill()
-
-    //cxt.fillStyle = "#000000"
-    //cxt.arc(400, 400, 50, 0, Math.PI * 2, true)
-    //cxt.fill()
-}

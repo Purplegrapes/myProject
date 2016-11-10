@@ -1,80 +1,123 @@
 ﻿var reds = document.getElementsByClassName('red');
-var planeBox=document.getElementsByClassName("planeBox");
+var a = [];
+var planeBox = document.getElementsByClassName("planeBox");
+
 var isClicked = true;
-var index = 0;
-var isReady = false;
-//var move = function (x,y) {  
-//    for (var i = 0; i < reds.length; i++) {
-//        reds[i].addEventListener('click', function () {
-//            if (isClicked) {
-//                this.style.top = x + "px";
-//                this.style.left = y + 'px';
-//                isClicked = false;
-//            }           
-//        });
- 
-//    };
-//}
+var index = -1;
+var nums = [];
 
 
+function Parent() {
+    this.isReady = false;
+    this.clickedTimes=0
+}
 
+$('.container').click(function () {
+        change();
+        judgeStep(0);
+    });
 var colorChoose = function (index, x, y) {
-    var planes = planeBox[index].childNodes;
-    function plane() {
-        
-    }
-    plane.prototype = {
-        isReady:false
-    }
-    var ss = new plane();
+
+    var planes = planeBox[index].children;
+     
     for (var i = 0; i < planes.length; i++) {
         
-        planes[i].addEventListener('click', function () {
-            if (isClicked) {
-                this.style.left = x + "px";
-                this.style.top = y + 'px';                
-                isClicked = false;
-                this.isReady = true;
-                               
-            }
+         
+            planes[i].addEventListener('click', function () {               
+                planes[i]= new Parent();
+                if (isClicked){
+                    planes[i].isReady = true;
+                    planes[i].clickedTimes++;
+                    console.log(planes[i].clickedTimes);
+                    console.log(planes[i].isReady);
+                    this.style.left = x + "px";
+                    this.style.top = y + 'px';
+                    isClicked = false;
+                }               
+            });
+        }
 
-        });
+        //replanes[i].removeEventListener('click', startMove);
+
     }
 
 
-  
+function judgeStep(a){
+    
+    junge(a);
+    var planes=planeBox[index].children;
+    for(var i=0;i<4;i++){
+        if(planes[i].isReady==true){
+            secondStep();
+        }
+        else{
+            firstStep();
+        }
+    }
 }
 var firstStep = function () {
-    console.log(number);
-    if (number == 6) {
-        if (index == 0) {
-            colorChoose(index, 430, 160);
-            isClicked = true;
-            
-        }
-        else if (index == 1) {
-            colorChoose(index, 780, 40);
-            isClicked = true;
-        }
-        else if (index == 2) {
-            colorChoose(index, 550, 510);
-            isClicked = true;
-        }
-        else if (index == 3) {
-            colorChoose(index, 900, 390);
-            isClicked = true;
-        }
-        
+    if (nums[0] == 6) {
+        console.log(index);
+        colorChoose(index + 1, 430, 160);
+        junge(1);
     }
     else {
+        junge(0);
+    }   
+}
+function junge(a) {
+    if (nums[a] !== 6) {
         index++;
-        if (index == 4) {
-            index = 0;
+    }
+    if (index == 4) {
+        index = 0;
+    }
+    console.log(index);
+    if (index == 0) {
+        colorChoose(0, 430, 160);
+        isClicked = true;
+    }
+    else if (index == 1) {
+        colorChoose(1, 780, 40);
+        isClicked = true;
+    }
+    else if (index == 2) {
+        colorChoose(3, 900, 390);
+        isClicked = true;
+
+    }
+    else if (index == 3) {
+        colorChoose(2, 550, 510);
+        isClicked = true;
+    }
+    return index;
+}
+
+
+
+function redJudge(a,x,y) {
+    if (nums[a] == 6) {
+
+    }
+
+}
+
+
+
+
+
+
+var secondStep = function (a, step) {
+   
+        if (nums[a] == 6) {
+            for (var j = 0; j < planes.length; j++) {
+                if (planes[j].isReady == false) {
+                    planes[i].addEventListener('click', redJudge(0));
+
+                }
+                else {
+                    planes[i]
+                }
+            }
         }
     }
-}
-var secondStep = function () {
-    if (number == 1) {
-        colorChoose(index, 30, 30);
-    }
-}
