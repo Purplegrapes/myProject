@@ -91,8 +91,7 @@ function change() {
     }
     $('.container').html(arr);
     number = parseInt(arr[1].getAttribute("data-num"));
-    nums.push(number);
-    console.log(nums);
+   
     $('.container').get(0).addEventListener("animationend", function () {
         $('.container').removeClass('animate');
     })
