@@ -25,82 +25,7 @@ $('.container').click(function () {
 });
 var redClick = function () {
     var redplane = _this;
-    switch (second) {
-        case 1: {
-            console.log(redplane.isReady);
-            if (redplane.isReady == true) {
-                colorChoose(0, 450, 180);
-            }
-            else {
-                isClicked = false;
-            }
-           
-
-            index++;
-                    
-        }
-            break;
-        case 2: {
-            console.log(redplane.isReady);
-            if (redplane.isReady == true) {
-                colorChoose(0, 485, 170);
-            }
-            else {
-                isClicked = false;
-            }
-            index++;
-        }
-            break;
-        case 3: {
-            console.log(redplane.isReady);
-            if (redplane.isReady == true) {
-                colorChoose(0, 515, 170);
-            }
-            else {
-                isClicked = false;
-            }
-            index++;
-        }
-            break;
-        case 4: {
-            console.log(redplane.isReady);
-            if (redplane.isReady == true) {
-                colorChoose(0, 550, 180);
-            }
-            else {
-                isClicked = false;
-            }
-
-
-            index++;
-        }
-            break;
-        case 5: {
-            console.log(redplane.isReady);
-            if (redplane.isReady == true) {
-                colorChoose(0, 570, 160);
-            }
-            else {
-                isClicked = false;
-            }
-            index++;
-        }
-            break;
-        case 6: {
-            console.log(redplane.isReady);
-           
-            if (redplane.isReady == false) {
-                colorChoose(0, 430, 160);
-            }
-            else {
-                colorChoose(0, 560, 125);
-            }
-            
-
-
-        }
-            break;
-    }
+   
 }
 var yellowClick = function () {
     var yellowplane = _this;
@@ -174,31 +99,19 @@ var FirstClick = function () {
     nowIndex();
     console.log(number);
     console.log(index);
-    //nums = nums.length - 1> 0 ? nums.splice(-1, nums.length - 1) : nums;
-    
+    //nums = nums.length - 1> 0 ? nums.splice(-1, nums.length - 1) : nums;    
     first = nums[nums.length - 2] ? nums[nums.length - 2] : number;
     console.log(first);
     second = nums[nums.length - 2] ? nums[nums.length - 1] : null;
     if (index == 0) {      
-        if (first == 6) {
+        if (number == 6) {
             console.log(second);
             colorChoose(0, 430, 160);
-            isClicked = true;
+            //redSecond(index);
             index--;
-            redClick();
         }
         
     }
-    //if (index == 0) {
-    //    switch (number) {
-    //        case 6: {
-    //            colorChoose(0, 430, 160);
-    //            isClicked = true;
-    //            index--;
-    //        }
-    //            break
-    //    }
-    //}
     if (index == 1) {
         
         if(number==6){
@@ -235,9 +148,84 @@ var FirstClick = function () {
     }
 
 }
+//判断红色第二步
+var redSecond = function (index) {
+    var planes = planeBox[index].children;
+    for (var i = 0; i < planes.length; i++) {
+        if(planes[i].isReady==true){
+            planes[i].addEventListener('click', function () {
+                switch (second) {
+                    case 1: {
+                        this.style.left = 450 + "px";
+                        this.style.top = 180 + 'px';
+                        isClicked = false;
+                      
+                        index++;
+
+                    }
+                        break;
+                    case 2: {
+                        this.style.left = 485+ "px";
+                        this.style.top = 170+ 'px';
+                        isClicked = false;
+                        
+                        index++;
+                    }
+                        break;
+                    case 3: {
+                        this.style.left = 515 + "px";
+                        this.style.top = 170+ 'px';
+                        isClicked = false;
+                        index++;
+                    }
+                        break;
+                    case 4: {
+                        this.style.left = 550+ "px";
+                        this.style.top = 180 + 'px';
+                        isClicked = false;
+                       
+                        index++;
+                    }
+                        break;
+                    case 5: {
+                        this.style.left = 570+ "px";
+                        this.style.top = 160 + 'px';
+                        isClicked = false;
+                     
+                        index++;
+                    }
+                        break;
+                    case 6: {
+                        if (this.isReady == true) {
+                            this.style.left = 560 + "px";
+                            this.style.top = 125 + 'px';
+                            isClicked = false;
+
+                        }
+                        else {
+                            this.style.left = 430 + "px";
+                            this.style.top =160 + 'px';
+                            isClicked = false;
+                        }
+                       
+                     
 
 
 
+                    }
+                        break;
+                }
+        })
+        
+
+           
+       
+        
+    }
+    console.log(index)
+    
+    }
+}
 var nowIndex = function () {
     nums.push(number);
     console.log(nums);
@@ -246,40 +234,31 @@ var nowIndex = function () {
     if (index == 4) {
         index = 0;
     }
-
-
     return index;
 };
 
 var colorChoose = function (index, x, y) {
     var planes = planeBox[index].children;
-    for (var i = 0; i < planes.length; i++) {
-        planes[i].addEventListener('click', function () {
-            _this = this;
-            if (isClicked==true&&this.isReady==false) {
+    for (var i = 0; i < planes.length; i++) 
+       
+        planes[i].addEventListener('click', function (e) {
+            if(this.isReady==false){
+                _this = this;
+                var idName = e.target.id;               
                 this.isReady = true;
                 console.log(this.isReady);
                 this.style.left = x + "px";
                 this.style.top = y + 'px';
                 isClicked = false;
-                console.log("left");
             }
-            else {
-                this.style.left = x + "px";
-                this.style.top = y + 'px';
-                isClicked = false;
-                console.log("top");
+               
+            })
             }
-
-           
-        });
-        
-    }
-    console.log(index);
-    
+ 
+   
     //replanes[i].removeEventListener('click', startMove);
 
-}
+
 //var colorChooseFly = function (index, x, y) {
 //    var flyplanes = planeBox[index].children;
 //    for (var i = 0; i < flyplanes.length; i++) {
