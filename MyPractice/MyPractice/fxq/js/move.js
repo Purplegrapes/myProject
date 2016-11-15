@@ -259,26 +259,6 @@ var colorChoose = function (index, x, y) {
     //replanes[i].removeEventListener('click', startMove);
 
 
-//var colorChooseFly = function (index, x, y) {
-//    var flyplanes = planeBox[index].children;
-//    for (var i = 0; i < flyplanes.length; i++) {
-//        flyplanes[i].addEventListener('click', function () {
-
-//            if (isClicked && flyplanes[i].isReady == true) {
-
-//                console.log(this.isReady);
-//                this.style.left = x + "px";
-//                this.style.top = y + 'px';
-//                isClicked = false;
-//            }          
-
-//        });
-
-//    }
-
-//    //replanes[i].removeEventListener('click', startMove);
-
-//}
 
 
 function judgeStep(a) {
