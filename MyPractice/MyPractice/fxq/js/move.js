@@ -2,7 +2,7 @@
 var a = [];
 var planeBox = document.getElementsByClassName("planeBox");
 var isClicked = true;
-var index = 0;
+var index = -1;
 var nums = [];
 var planes;
 var FisrtAttr = function () {
@@ -17,14 +17,28 @@ var FisrtAttr = function () {
 
 $('.container').click(function () {
     change();
+    FirstClick();
+
+});
+var SecondClick = function () {
+    
+}
+var FirstClick=function(){
     nowIndex();
     console.log(number);
+    
     console.log(index);
+    if (index == -1) {
+        colorChoose(0, 430, 160);
+        isClicked = true;
+        index--;
+    }
     if (index == 0) {
         switch (number) {
             case 6: {
                 colorChoose(0, 430, 160);
                 isClicked = true;
+                index--;
             }
                 break
         }
@@ -34,6 +48,7 @@ $('.container').click(function () {
             case 6: {
                 colorChoose(1, 780, 40);
                 isClicked = true;
+                index--;
             }
 
                 break
@@ -45,6 +60,7 @@ $('.container').click(function () {
             case 6: {
                 colorChoose(3, 900, 390);
                 isClicked = true;
+                index--;
             }
 
                 break
@@ -55,22 +71,25 @@ $('.container').click(function () {
             case 6: {
                 colorChoose(4, 550, 510);
                 isClicked = true;
+                index--;
             }
                 break
         }
     }
-        
+    
+}
 
-});
+
+
 var nowIndex = function () {
     nums.push(number);
     console.log(nums);
-    if (number !== 6) {
+   
         index++;
         if (index == 4) {
             index = 0;
         }
-    }
+    
     
     return index;
 };
