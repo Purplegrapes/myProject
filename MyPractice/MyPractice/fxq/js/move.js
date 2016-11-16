@@ -33,6 +33,14 @@ var redClick = function () {
     //var redplane = _this;
 
 }
+function aa() {
+    colorChoose(430, 160, this.id);
+    isClicked = false;
+    for (var i = 0; i < planeBox[0].children.length; i++) {
+        planeBox[0].children[i].removeEventListener("click", aa);
+    }
+    
+}
 var yellowClick = function () {
     //var yellowplane = _this;
     switch (second) {
@@ -117,19 +125,23 @@ var FirstClick = function () {
     console.log(first);
     second = nums[nums.length - 2] ? nums[1] : null;
     console.log(second);
-    if (index == -1||index==0) {
+    if (index == -1 || index == 0) {
+        
         var replanes = planeBox[0].children;
         
        
         if (first == 6) {          
             console.log(second);
-            for (var i = 0; i < replanes.length;i++){              
-                replanes[i].addEventListener('click', function (e) {
-                    e = e || window.event;
-                    var el = e.srcElement;
-                    colorChoose(430, 160, el.id);
-                    isClicked = false;
-                })
+            for (var i = 0; i < replanes.length; i++) {
+               
+                replanes[i].addEventListener('click', aa,false)
+                //replanes[i].addEventListener('click', function (e) {
+                //    e = e || window.event;
+                //    var el = e.srcElement;
+                //    colorChoose(430, 160, el.id);
+                //    isClicked = false;
+                //  replanes[i].removeEventListener("click", this)
+                //}, false)
                
             }
            
@@ -542,7 +554,6 @@ var colorChoose = function (x, y, plane) {
                
             }
             else if (index == 0 || index == -1) {
-
                 redSecond(second, red1);
             }
         }
@@ -572,6 +583,7 @@ var colorChoose = function (x, y, plane) {
         case "red4": {
             if (red4.isReady == false) {
                 FirstMove(red4, x, y);
+                
             }
             else if (index == 0 || index == -1) {
                 
