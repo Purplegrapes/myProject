@@ -78,7 +78,7 @@ ctx6.closePath();
 ctx6.arc(width * 3 / 4, width * 4 / 5, width / 10, 0, 2 * Math.PI, false);
 ctx6.fillStyle = "#fff";
 ctx6.fill();
-
+var a=0;
 function change() {
     $('.container').addClass('animate');
     //console.log($('.container').hasClass('animate'))
@@ -90,8 +90,13 @@ function change() {
         arr[i] = temp;
     }
     $('.container').html(arr);
+    if (a == 0) {
+        number = 6;
+        a++;
+    }
+    else { 
     number = parseInt(arr[1].getAttribute("data-num"));
-   
+    }
     $('.container').get(0).addEventListener("animationend", function () {
         $('.container').removeClass('animate');
     })
