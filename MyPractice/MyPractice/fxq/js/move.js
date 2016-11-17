@@ -1,4 +1,6 @@
-﻿var reds = document.getElementsByClassName('red');
+﻿
+
+var reds = document.getElementsByClassName('red');
 var a = [];
 var planeBox = document.getElementsByClassName("planeBox");
 var planeBox0 = document.getElementById("planeBox0");
@@ -14,137 +16,79 @@ var FisrtAttr = function () {
         planes = planeBox[i].children;
         for (var j = 0; j < planes.length; j++) {
             planes[j].isReady = false;
-           
-            
         }
     }
-
+    console.log("红色玩家请投掷");
 }();
 
+//得到当前飞机盒子的index
+var nowIndex = function () {
+    
+    if (number !== 6 && first != 6&&(second!=6)) {
+        index++;
+        if (index == 4) {
+            index = 0;
+        }
+    }
+    else if (number == 6 && first == 6 && (second != 6)) {
+        index++;
+        if (index == 4) {
+            index = 0;
+        }
+    }
+   
+    console.log("number" + number);
+    console.log("index:" + index);
+    return index;
+
+};
 $('.container').click(function () {
     change();
-  
-        FirstClick();
-    
-    
+   
+    FirstClick();
+
+
 
 });
-var redClick = function () {
-    //var redplane = _this;
-
-}
-function aa() {
-    colorChoose(430, 160, this.id);
-    isClicked = false;
-    for (var i = 0; i < planeBox[0].children.length; i++) {
-        planeBox[0].children[i].removeEventListener("click", aa);
-    }
-    
-}
-var yellowClick = function () {
-    //var yellowplane = _this;
-    switch (second) {
-        case 1: {
-            console.log(second);
-            if (yellowplane.isReady == true) {
-                colorChoose(1, 450, 180);
-            }
-
-
-            index++;
-
-        }
-            break;
-        case 2: {
-            console.log(second);
-            console.log(yellowplane.isReady);
-            if (yellowplane.isReady == true) {
-                colorChoose(1, 485, 170);
-            }
-            index++;
-        }
-            break;
-        case 3: {
-            console.log(second);
-            console.log(yellowplane.isReady);
-            if (yellowplane.isReady == true) {
-                colorChoose(1, 505, 185);
-            }
-            index++;
-        }
-            break;
-        case 4: {
-            console.log(second);
-            console.log(yellowplane.isReady);
-            if (yellowplane.isReady == true) {
-                colorChoose(1, 550, 180);
-            }
-
-
-            index++;
-        }
-            break;
-        case 5: {
-            console.log(second);
-            console.log(yellowplane.isReady);
-            if (yellowplane.isReady == true) {
-                colorChoose(0, 570, 160);
-            }
-            index++;
-        }
-            break;
-        case 6: {
-            console.log(second);
-            console.log(yellowplane.isReady);
-            if (yellowplane.isReady == false) {
-                colorChoose(0, 430, 160);
-            }
-            else {
-                colorChoose(0, 560, 125);
-            }
 
 
 
-        }
-            break;
-    }
-}
 var FirstClick = function () {
-    nowIndex();
-    console.log(number);
-    console.log(index);
+    nums.push(number);
+    console.log(nums);
     nums = nums.length - 2 > 0 ? nums.splice(-1, nums.length - 2) : nums;
-    if (nums.length > 1) {
-        first = nums[nums.length-1];
+     if (nums[nums.length - 1] == 6) {
+        first = 6;
     }
     else {
         first = nums[0];
     }
     
-    
-    console.log(first);
-    second = nums[nums.length - 2] ? nums[1] : null;
-    console.log(second);
+
+    console.log("first:" + first);
+    nowIndex();
+
+    if (first == 6) {
+        second = nums[nums.length - 1];
+
+    }
+    else {
+        second = null;
+    }
+    console.log("second:" + second);
     if (index == -1 || index == 0) {
-        
+        index = 0;
         var replanes = planeBox[0].children;
-        
-       
-        if (first == 6) {          
+
+
+        if (first == 6) {
+
             console.log(second);
             for (var i = 0; i < replanes.length; i++) {
-               
-                replanes[i].addEventListener('click', aa,false)
-                //replanes[i].addEventListener('click', function (e) {
-                //    e = e || window.event;
-                //    var el = e.srcElement;
-                //    colorChoose(430, 160, el.id);
-                //    isClicked = false;
-                //  replanes[i].removeEventListener("click", this)
-                //}, false)
-               
+
+                replanes[i].addEventListener('click', Clickone, false);
             }
-           
+
 
         }
     }
@@ -153,584 +97,452 @@ var FirstClick = function () {
         if (first == 6) {
             console.log(second);
             for (var i = 0; i < yeplanes.length; i++) {
-                yeplanes[i].addEventListener('click', function (e) {
-                    e = e || window.event;
-                    var el = e.srcElement;
 
-                    colorChoose(780,40, el.id);
+                yeplanes[i].addEventListener('click', Clickone, false);
 
-
-                })
             }
 
         }
 
 
     }
-    if (index == 2) {
-        var grplanes = planeBox[2].children;
+    if (index == 3) {
+        var grplanes = planeBox[3].children;
         if (first == 6) {
             console.log(second);
             for (var i = 0; i < grplanes.length; i++) {
-                grplanes[i].addEventListener('click', function (e) {
-                    e = e || window.event;
-                    var el = e.srcElement;
-                    colorChoose(550, 510, el.id);
-
-
-                })
+                grplanes[i].addEventListener('click', Clickone, false);
             }
 
         }
     }
-    if (index == 3) {
-        var blplanes = planeBox[3].children;
+    if (index == 2) {
+        var blplanes = planeBox[2].children;
         if (first == 6) {
             console.log(second);
             for (var i = 0; i < blplanes.length; i++) {
-                blplanes[i].addEventListener('click', function (e) {
-                    e = e || window.event;
-                    var el = e.srcElement;
-
-                    colorChoose(900, 390, el.id);
-
-
-                })
+                blplanes[i].addEventListener('click', Clickone, false);
             }
 
         }
     }
-   
+
 
 }
-//判断红色第二步
-var redSecond = function (second,planes) {
-    index = 0;
-    console.log(planes.isReady);
-    if (planes.isReady = true) {
-        planes.onclick = function () {
-            console.log(second);
-            switch (second) {
-                case 1: {
-                    console.log(planes.isReady);
-                    planes.style.left = 450 + "px";
-                    planes.style.top = 180 + 'px';
-                    isClicked = false;
+//第一次掷到6.点击飞机起飞
+function Clickone() {
 
-
-                }
-                    break;
-                case 2: {
-                    console.log(planes.isReady);
-                    planes.style.left = 485 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-
-                }
-                    break;
-                case 3: {
-                    console.log(planes.isReady);
-                    planes.style.left = 515 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-                   
-                }
-                    break;
-                case 4: {
-                    console.log(planes.isReady);
-                    planes.style.left = 550 + "px";
-                    planes.style.top = 180 + 'px';
-                    isClicked = false;
-
-                }
-                    break;
-                case 5: {
-                    console.log(planes.isReady);
-                    planes.style.left = 570 + "px";
-                    planes.style.top = 160 + 'px';
-                    isClicked = false;
-
-                  
-                }
-                    break;
-                case 6: {
-                   
-                    if (planes.isReady == true) {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-
-                    }
-                    else {
-                        planes.style.left = 750 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-                    }
-
-
-
-
-
-                }
-                    break;
+    // console.log(this.id);
+    isClicked = false;
+    for (var i = 0; i < planeBox[index].children.length; i++) {
+        switch (index) {
+            case 0: {
+                colorChoose(430, 160, this.id);
             }
-    }
-        planes.onclick();
-        console.log(index)
+                break;
+            case 1: {
+                colorChoose(780, 40, this.id);
+            }
+                break;
+            case 2: {
+                colorChoose(900, 390, this.id);
+            }
+                break;
+            case 3: {
+                colorChoose(550, 510, this.id);
 
+            }
+                break;
+        }
+
+        planeBox[index].children[i].removeEventListener("click", Clickone);
+    }
+
+}
+//第一次掷到6后掷第二次，如果起飞了执行secondStep()，
+//如果isReady==false并且second==6，就执行firstMove()
+var Clicktwo = function () {
+    console.log(index);
+    var froIndex = index;
+    if (froIndex == 0 || froIndex == -1) {
+        switch (second) {
+            case 1: {
+                secondStep(450, 180, this);
+            }
+                break;
+            case 2: {
+                secondStep(485, 170, this);
+
+            }
+                break;
+            case 3: {
+                secondStep(515, 170, this);
+
+            }
+                break;
+            case 4: {
+                secondStep(550, 180, this);
+
+            }
+                break;
+            case 5: {
+                secondStep(570, 160, this);
+
+
+            }
+                break;
+            case 6: {
+
+                if (this.isReady == true) {
+                    secondStep(750, 180, this);
+
+                }
+                else {
+                    secondStep(450, 180, this);
+                }
+            }
+                break;
+        }
+        this.removeEventListener('click', Clicktwo, false)
+    }
+    else if (froIndex == 1) {
+        switch (second) {
+            case 1: {
+                secondStep(760, 60, this);
+            }
+                break;
+            case 2: {
+                secondStep(770, 95, this);
+
+            }
+                break;
+            case 3: {
+                secondStep(770, 125, this);
+
+            }
+                break;
+            case 4: {
+                secondStep(760, 160, this);
+
+            }
+                break;
+            case 5: {
+                secondStep(780, 180, this);
+
+
+            }
+                break;
+            case 6: {
+
+                if (this.isReady == true) {
+                    secondStep(815, 170, this);
+
+                }
+                else {
+                    secondStep(780, 40, this);
+                }
+            }
+                break;
+        }
+        this.removeEventListener('click', Clicktwo, false)
+    }
+    else if (froIndex == 2) {
+        switch (second) {
+            case 1: {
+                secondStep(370, 880, this);
+            }
+                break;
+            case 2: {
+                secondStep(380, 845, this);
+
+            }
+                break;
+            case 3: {
+                secondStep(380, 815, this);
+
+            }
+                break;
+            case 4: {
+                secondStep(370, 780, this);
+
+            }
+                break;
+            case 5: {
+                secondStep(390, 760, this);
+
+
+            }
+                break;
+            case 6: {
+
+                if (this.isReady == true) {
+                    secondStep(425, 770, this);
+
+                }
+                else {
+                    secondStep(900, 390, this);
+                }
+            }
+                break;
+        }
+        this.removeEventListener('click', Clicktwo, false)
+    }
+    else if (froIndex == 3) {
+        switch (second) {
+            case 1: {
+                secondStep(570, 490, this);
+            }
+                break;
+            case 2: {
+                secondStep(560, 465, this);
+
+            }
+                break;
+            case 3: {
+                secondStep(560, 425, this);
+
+            }
+                break;
+            case 4: {
+                secondStep(570, 390, this);
+
+            }
+                break;
+            case 5: {
+                secondStep(550, 370, this);
+
+
+            }
+                break;
+            case 6: {
+
+                if (this.isReady == true) {
+                    secondStep(515, 380, this);
+
+                }
+                else {
+                    secondStep(550, 510, this);
+                }
+            }
+                break;
+        }
+        this.removeEventListener('click', Clicktwo, false)
+    }
+}
+
+
+
+
+
+//丢到6后再丢调用的函数
+var secondStep = function (x, y, plane) {
+    console.log(plane.isReady);
+    plane.style.left = x + 'px';
+    plane.style.top = y + 'px';
+    isClicked = false;
+}
+//判断第二步掷到的数字，并根据步数移动调用Clicktwo
+var Second = function (second, planes) {
+
+    console.log(planes.isReady);
+    
+    if (planes.isReady == true) {
+        planes.addEventListener('click', Clicktwo, false);
     }
     
     
-               
-            }
-
-var yeSecond = function (second, planes) {
-    index = 1;
-    console.log(planes.isReady);
-    if (planes.isReady = true) {
-        planes.onclick = function () {
-            console.log(second);
-            switch (second) {
-                case 1: {
-                    console.log(planes.isReady);
-                    planes.style.left = 680 + "px";
-                    planes.style.top = 30 + 'px';
-                    isClicked = false;
-
-                    
-
-                }
-                    break;
-                case 2: {
-                    console.log(planes.isReady);
-                    planes.style.left = 720 + "px";
-                    planes.style.top = 50 + 'px';
-                    isClicked = false;
-
-                    
-                }
-                    break;
-                case 3: {
-                    console.log(planes.isReady);
-                    planes.style.left = 720 + "px";
-                    planes.style.top = 70 + 'px';
-                    isClicked = false;
-                   
-                }
-                    break;
-                case 4: {
-                    console.log(planes.isReady);
-                    planes.style.left = 680 + "px";
-                    planes.style.top = 70 + 'px';
-                    isClicked = false;
-
-                    
-                }
-                    break;
-                case 5: {
-                    console.log(planes.isReady);
-                    planes.style.left = 690 + "px";
-                    planes.style.top = 90 + 'px';
-                    isClicked = false;
-
-                    
-                }
-                    break;
-                case 6: {
-                    console.log(planes);
-                    if (this.isReady == true) {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-
-                    }
-                    else {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-                    }
-
-
-
-
-
-                }
-                    break;
-            }
-        }
-        planes.onclick();
-        console.log(index)
-
-    }
-
-
-
-}
-var grSecond = function (second, planes) {
-    index = 1;
-    console.log(planes.isReady);
-    if (planes.isReady = true) {
-        planes.onclick = function () {
-            console.log(second);
-            switch (second) {
-                case 1: {
-                    console.log(planes.isReady);
-                    planes.style.left = 560 + "px";
-                    planes.style.top = 490 + 'px';
-                    isClicked = false;
-
-                    index++;
-
-                }
-                    break;
-                case 2: {
-                    console.log(planes.isReady);
-                    planes.style.left = 480 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 3: {
-                    console.log(planes.isReady);
-                    planes.style.left = 515 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-                    index++;
-                }
-                    break;
-                case 4: {
-                    console.log(planes.isReady);
-                    planes.style.left = 550 + "px";
-                    planes.style.top = 180 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 5: {
-                    console.log(planes.isReady);
-                    planes.style.left = 570 + "px";
-                    planes.style.top = 160 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 6: {
-                    console.log(planes);
-                    if (this.isReady == true) {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-
-                    }
-                    else {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-                    }
-
-
-
-
-
-                }
-                    break;
-            }
-        }
-        planes.onclick();
-        console.log(index)
-
-    }
-
-
-
+    console.log("nowindex" + index);
 }
 
-var blSecond = function (second, planes) {
-    index = 1;
-    console.log(planes.isReady);
-    if (planes.isReady = true) {
-        planes.onclick = function () {
-            console.log(second);
-            switch (second) {
-                case 1: {
-                    console.log(planes.isReady);
-                    planes.style.left = 450 + "px";
-                    planes.style.top = 180 + 'px';
-                    isClicked = false;
 
-                    index++;
-
-                }
-                    break;
-                case 2: {
-                    console.log(planes.isReady);
-                    planes.style.left = 485 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 3: {
-                    console.log(planes.isReady);
-                    planes.style.left = 515 + "px";
-                    planes.style.top = 170 + 'px';
-                    isClicked = false;
-                    index++;
-                }
-                    break;
-                case 4: {
-                    console.log(planes.isReady);
-                    planes.style.left = 550 + "px";
-                    planes.style.top = 180 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 5: {
-                    console.log(planes.isReady);
-                    planes.style.left = 570 + "px";
-                    planes.style.top = 160 + 'px';
-                    isClicked = false;
-
-                    index++;
-                }
-                    break;
-                case 6: {
-                    console.log(planes);
-                    if (this.isReady == true) {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-
-                    }
-                    else {
-                        planes.style.left = 450 + "px";
-                        planes.style.top = 180 + 'px';
-                        isClicked = false;
-                    }
-
-
-
-
-
-                }
-                    break;
-            }
-        }
-        planes.onclick();
-        console.log(index)
-
-    }
-
-
-
-}
-        
-      
-
-    
 
 var FirstMove = function (plane, x, y) {
-    
-        plane.isReady = true;
-        
-        plane.style.left = x + 'px';
-        plane.style.top = y + 'px';
-        isClicked = false;
-       
+
+    plane.isReady = true;
+
+    plane.style.left = x + 'px';
+    plane.style.top = y + 'px';
+    isClicked = false;
+
 }
 
 var colorChoose = function (x, y, plane) {
- switch (plane) {
+    switch (plane) {
         case "red1": {
             if (red1.isReady == false) {
                 red1.addEventListener('click', FirstMove(red1, x, y));
-               
+
             }
             else if (index == 0 || index == -1) {
-                redSecond(second, red1);
+                index = 0;
+                Second(second, red1);
             }
         }
             break;
-        
+
         case "red2": {
             if (red2.isReady == false) {
                 FirstMove(red2, x, y);
             }
-            else if (index == 0||index==-1) {
-                redSecond(second, red2);
+            else if (index == 0 || index == -1) {
+                Second(second, red2);
             }
         }
             break;
-           
-        
+
+
         case "red3": {
             if (red3.isReady == false) {
                 FirstMove(red3, x, y);
             }
             else if (index == 0 || index == -1) {
-                redSecond(second, red3);
+                Second(second, red3);
             }
         }
             break;
-        
+
         case "red4": {
             if (red4.isReady == false) {
                 FirstMove(red4, x, y);
-                
+
             }
             else if (index == 0 || index == -1) {
-                
-                redSecond(second, red4);
+
+                Second(second, red4);
             }
         }
             break;
-     case "yellow1": {
-         if (yellow1.isReady == false) {
-             FirstMove(yellow1, x, y);
-         }
-         else {
+        case "yellow1": {
+            if (yellow1.isReady == false) {
+                FirstMove(yellow1, x, y);
+            }
+            else {
 
-             yeSecond(second, red1);
-         }
-     }
-         break;
+                Second(second, yellow1);
+            }
+        }
+            break;
 
-     case "yellow2": {
-         if (yellow2.isReady == false) {
-             FirstMove(yellow2, x, y);
-         }
-         else {
-             yeSecond(second, yellow2);
-         }
-     }
-         break;
-
-
-     case "yellow3": {
-         if (yellow3.isReady == false) {
-             FirstMove(yellow3, x, y);
-         }
-         else {
-             yeSecond(second, yellow3);
-         }
-     }
-         break;
-
-     case "yellow4": {
-         if (red4.isReady == false) {
-             FirstMove(yellow4, x, y);
-         }
-         else {
-
-             yeSecond(second, yellow4);
-         }
-     }
-         break;
-     case "green1": {
-         if (green1.isReady == false) {
-             FirstMove(green1, x, y);
-         }
-         else {
-
-             blSecond(second, green1);
-         }
-     }
-         break;
-
-     case "green2": {
-         if (green2.isReady == false) {
-             FirstMove(green2, x, y);
-         }
-         else {
-             blSecond(second, green2);
-         }
-     }
-         break;
+        case "yellow2": {
+            if (yellow2.isReady == false) {
+                FirstMove(yellow2, x, y);
+            }
+            else {
+                Second(second, yellow2);
+            }
+        }
+            break;
 
 
-     case "green3": {
-         if (green3.isReady == false) {
-             FirstMove(green3, x, y);
-         }
-         else {
-             blSecond(second, green3);
-         }
-     }
-         break;
+        case "yellow3": {
+            if (yellow3.isReady == false) {
+                FirstMove(yellow3, x, y);
+            }
+            else {
+                Second(second, yellow3);
+            }
+        }
+            break;
 
-     case "green4": {
-         if (green4.isReady == false) {
-             FirstMove(green4, x, y);
-         }
-         else {
+        case "yellow4": {
+            if (red4.isReady == false) {
+                FirstMove(yellow4, x, y);
+            }
+            else {
 
-             blSecond(second, green4);
-         }
-     }
-         break;
-     case "blue1": {
-         if (blue1.isReady == false) {
-             FirstMove(blue1, x, y);
-         }
-         else {
+                Second(second, yellow4);
+            }
+        }
+            break;
+        case "green1": {
+            if (green1.isReady == false) {
+                FirstMove(green1, x, y);
+            }
+            else {
 
-             blSecond(second, blue1);
-         }
-     }
-         break;
+                Second(second, green1);
+            }
+        }
+            break;
 
-     case "blue2": {
-         if (blue2.isReady == false) {
-             FirstMove(blue2, x, y);
-         }
-         else {
-             blSecond(second, blue2);
-         }
-     }
-         break;
+        case "green2": {
+            if (green2.isReady == false) {
+                FirstMove(green2, x, y);
+            }
+            else {
+                Second(second, green2);
+            }
+        }
+            break;
 
 
-     case "blue3": {
-         if (blue3.isReady == false) {
-             FirstMove(blue3, x, y);
-         }
-         else {
-             blSecond(second, blue3);
-         }
-     }
-         break;
+        case "green3": {
+            if (green3.isReady == false) {
+                FirstMove(green3, x, y);
+            }
+            else {
+                Second(second, green3);
+            }
+        }
+            break;
 
-     case "blue4": {
-         if (blue.isReady == false) {
-             FirstMove(blue4, x, y);
-         }
-         else {
+        case "green4": {
+            if (green4.isReady == false) {
+                FirstMove(green4, x, y);
+            }
+            else {
 
-             blSecond(second, blue4);
-         }
-     }
-         break;
+                Second(second, green4);
+            }
+        }
+            break;
+        case "blue1": {
+            if (blue1.isReady == false) {
+                FirstMove(blue1, x, y);
+            }
+            else {
+
+                Second(second, blue1);
+            }
+        }
+            break;
+
+        case "blue2": {
+            if (blue2.isReady == false) {
+                FirstMove(blue2, x, y);
+            }
+            else {
+                Second(second, blue2);
+            }
+        }
+            break;
+
+
+        case "blue3": {
+            if (blue3.isReady == false) {
+                FirstMove(blue3, x, y);
+            }
+            else {
+                Second(second, blue3);
+            }
+        }
+            break;
+
+        case "blue4": {
+            if (blue.isReady == false) {
+                FirstMove(blue4, x, y);
+            }
+            else {
+
+                Second(second, blue4);
+            }
+        }
+            break;
 
     }
 }
 
-//得到当前飞机盒子的index
-var nowIndex = function () {
-    nums.push(number);
-    console.log(nums);
-    if (number !== 6) {
-        index++;
-        if (index == 4) {
-            index = 0;
-        }
-    }
-    
-    return index;
-};
+
+
+
+
