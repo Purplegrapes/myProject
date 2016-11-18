@@ -1,10 +1,17 @@
 ﻿.container1{
-    width:560px;
-    height:550px;
+    
     margin:0 auto;
     position:absolute;
-    top:0;
+    position: absolute;
+    left: -70.5%;
+    top: -1.5%;
     
+}
+.Box{
+    width:560px;
+    height:560px;
+    position:relative;
+    margin:0 auto;
 }
 
 .red {

@@ -2,7 +2,9 @@
     var canvas = document.getElementById('canvas');
     canvas.height =550;
     canvas.width = 550;
-    var context = canvas.getContext('2d');   
+    var context = canvas.getContext('2d');
+   
+    
    //红色
     context.beginPath();
     context.fillStyle = "rgb(216,34,13)";

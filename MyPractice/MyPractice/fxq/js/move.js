@@ -16,12 +16,14 @@ var FisrtAttr = function () {
         planes = planeBox[i].children;
         for (var j = 0; j < planes.length; j++) {
             planes[j].isReady = false;
+            planes[j].clickedtimes = 0;
         }
     }
     console.log("红色玩家请投掷");
 }();
 
 //得到当前飞机盒子的index
+
 var nowIndex = function () {
     
     if (number !== 6 && first != 6&&(second!=6)) {
@@ -40,13 +42,31 @@ var nowIndex = function () {
     console.log("number" + number);
     console.log("index:" + index);
     return index;
+   
 
 };
+var whichPlayer = function (index) {
+   
+    switch (index) {
+        case -1: alert("红色玩家该你了");
+            break;
+        case 0: alert("红色玩家该你了");
+            break;
+        case 1: alert("黄色玩家该你了");
+            break;
+        case 2: alert("蓝色玩家该你了");
+            break;
+        case 3: alert("绿色玩家该你了");
+            break;
+    }
+};
+whichPlayer(0);
 $('.container').click(function () {
     change();
-   
+    
     FirstClick();
 
+   
 
 
 });
@@ -64,7 +84,7 @@ var FirstClick = function () {
         first = nums[0];
     }
     
-
+    
     console.log("first:" + first);
     nowIndex();
 
@@ -78,11 +98,12 @@ var FirstClick = function () {
     console.log("second:" + second);
     if (index == -1 || index == 0) {
         index = 0;
+        
         var replanes = planeBox[0].children;
 
 
         if (first == 6) {
-
+           
             console.log(second);
             for (var i = 0; i < replanes.length; i++) {
 
@@ -131,13 +152,16 @@ var FirstClick = function () {
 }
 //第一次掷到6.点击飞机起飞
 function Clickone() {
-
+   
     // console.log(this.id);
     isClicked = false;
+    
     for (var i = 0; i < planeBox[index].children.length; i++) {
         switch (index) {
             case 0: {
+               
                 colorChoose(430, 160, this.id);
+                
             }
                 break;
             case 1: {
@@ -163,8 +187,10 @@ function Clickone() {
 //如果isReady==false并且second==6，就执行firstMove()
 var Clicktwo = function () {
     console.log(index);
-    var froIndex = index;
-    if (froIndex == 0 || froIndex == -1) {
+    console.log(this.clickedtimes);
+    console.log(this.style.left);
+    console.log(this.style.top);
+    if (index == 0 || index == -1) {
         switch (second) {
             case 1: {
                 secondStep(450, 180, this);
@@ -205,10 +231,16 @@ var Clicktwo = function () {
         }
         this.removeEventListener('click', Clicktwo, false)
     }
-    else if (froIndex == 1) {
+    else if (index == 1) {
         switch (second) {
             case 1: {
-                secondStep(760, 60, this);
+                switch (this.clickedtimes) {
+                    case 2: secondStep(760, 60, this);
+                        break;
+                    //case 2:secondStep()
+
+                }
+                
             }
                 break;
             case 2: {
@@ -246,7 +278,7 @@ var Clicktwo = function () {
         }
         this.removeEventListener('click', Clicktwo, false)
     }
-    else if (froIndex == 2) {
+    else if (index == 2) {
         switch (second) {
             case 1: {
                 secondStep(370, 880, this);
@@ -287,10 +319,12 @@ var Clicktwo = function () {
         }
         this.removeEventListener('click', Clicktwo, false)
     }
-    else if (froIndex == 3) {
+    else if (index == 3) {
         switch (second) {
             case 1: {
+                
                 secondStep(570, 490, this);
+
             }
                 break;
             case 2: {
@@ -339,7 +373,10 @@ var secondStep = function (x, y, plane) {
     console.log(plane.isReady);
     plane.style.left = x + 'px';
     plane.style.top = y + 'px';
+    plane.clickedtimes++;
+    console.log(plane.clickedtimes);
     isClicked = false;
+   
 }
 //判断第二步掷到的数字，并根据步数移动调用Clicktwo
 var Second = function (second, planes) {
@@ -359,18 +396,21 @@ var Second = function (second, planes) {
 var FirstMove = function (plane, x, y) {
 
     plane.isReady = true;
-
+    plane.clickedtimes++;
+    console.log(plane.clickedtimes);
     plane.style.left = x + 'px';
     plane.style.top = y + 'px';
+   
     isClicked = false;
 
 }
-
+//
 var colorChoose = function (x, y, plane) {
+
     switch (plane) {
         case "red1": {
             if (red1.isReady == false) {
-                red1.addEventListener('click', FirstMove(red1, x, y));
+                red1.addEventListener('click', FirstMove(red1, x, y), whichPlayer(index));
 
             }
             else if (index == 0 || index == -1) {
