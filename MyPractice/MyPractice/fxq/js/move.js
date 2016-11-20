@@ -17,9 +17,10 @@ var FisrtAttr = function () {
         for (var j = 0; j < planes.length; j++) {
             planes[j].isReady = false;
             planes[j].clickedtimes = 0;
+            planes[j].step = 0;
         }
     }
-    console.log("红色玩家请投掷");
+   
 }();
 
 //得到当前飞机盒子的index
@@ -60,24 +61,21 @@ var whichPlayer = function (index) {
             break;
     }
 };
-whichPlayer(0);
+
 $('.container').click(function () {
     change();
     
     FirstClick();
-
-   
-
-
 });
 
 
 
 var FirstClick = function () {
     nums.push(number);
+   
+    nums = nums.length - 2 > 0 ? nums.splice(-1, nums.length - 1) : nums;
     console.log(nums);
-    nums = nums.length - 2 > 0 ? nums.splice(-1, nums.length - 2) : nums;
-     if (nums[nums.length - 1] == 6) {
+     if (nums[nums.length - 1] == 6||nums[nums.length-2]==6) {
         first = 6;
     }
     else {
@@ -183,183 +181,622 @@ function Clickone() {
     }
 
 }
-//第一次掷到6后掷第二次，如果起飞了执行secondStep()，
+//第一次掷到6后掷第二次，如果起飞了根据累计步数改变position执行secondStep()，
 //如果isReady==false并且second==6，就执行firstMove()
-var Clicktwo = function () {
-    console.log(index);
-    console.log(this.clickedtimes);
-    console.log(this.style.left);
-    console.log(this.style.top);
-    if (index == 0 || index == -1) {
-        switch (second) {
-            case 1: {
-                secondStep(450, 180, this);
+//红色飞机根据步数移动
+var redjudgeStep = function (steps,_this) {
+    
+    switch (steps) {
+        case 1:
+            secondStep(450, 180, _this);
+            break;
+        case 2:
+            secondStep(485, 170, _this);       
+            break;
+        case 3: 
+            secondStep(515, 170, _this);        
+            break;
+        case 4: 
+            secondStep(550, 180, _this);
+            break;
+        case 5: 
+            secondStep(570, 160, _this);
+            break;
+        case 6: {
+            if (_this.isReady == true) {
+                secondStep(560, 125, _this);
             }
-                break;
-            case 2: {
-                secondStep(485, 170, this);
-
+            else {
+                secondStep(430, 160, _this);
             }
-                break;
-            case 3: {
-                secondStep(515, 170, this);
-
-            }
-                break;
-            case 4: {
-                secondStep(550, 180, this);
-
-            }
-                break;
-            case 5: {
-                secondStep(570, 160, this);
-
-
-            }
-                break;
-            case 6: {
-
-                if (this.isReady == true) {
-                    secondStep(750, 180, this);
-
-                }
-                else {
-                    secondStep(450, 180, this);
-                }
-            }
-                break;
         }
+            break;
+        case 7: secondStep(560, 95, _this);
+            break;
+        case 8: secondStep(570, 60, _this);
+            break;
+        case 9: secondStep(605, 50, _this);
+            break;
+        case 10: secondStep(635, 50, _this);
+            break;
+        case 11: secondStep(665, 50, _this);
+            break;
+        case 12: secondStep(695, 50, _this);
+            break;
+        case 13: secondStep(725, 50, _this);
+            break;
+        case 14: secondStep(760, 60, _this);
+            break;
+        case 15: secondStep(770, 95, _this);
+            break;
+        case 16: secondStep(770, 125, _this);
+            break;
+        case 17: secondStep(760, 160, _this);
+            break;     
+        case 18: secondStep(780, 180, _this);
+            break;
+        case 19: secondStep(815, 170, _this);
+            break;
+        case 20: secondStep(845, 170, _this);
+            break;
+
+        case 21: secondStep(880, 180, _this);
+            break;
+
+        case 22: secondStep(890, 215, _this);
+            break;
+        case 23: secondStep(890, 245, _this);
+            break;
+        case 24: secondStep(890, 275, _this);
+            break;
+        case 25: secondStep(890, 305, _this);
+            break;
+        case 26: secondStep(890, 335, _this);
+            break;
+        case 27: secondStep(880, 370, _this);
+            break
+        case 28: secondStep(845, 380, _this);
+            break;
+        case 29: secondStep(815, 380, _this);
+            break;
+        case 30: secondStep(780, 370, _this);
+            break;
+        case 31: secondStep(760, 390, _this);
+            break;
+        case 32: secondStep(770, 425, _this);
+            break;
+        case 33: secondStep(770, 455, _this);
+            break;
+
+        case 34: secondStep(760, 490, _this);
+            break;
+        case 35: secondStep(725, 500, _this);
+            break;
+        case 36: secondStep(695, 500, _this);
+            break;
+        case 37: secondStep(665, 500, _this);
+            break;
+        case 38: secondStep(635, 500, _this);
+            break;
+        case 39: secondStep(605, 500, _this);
+            break;
+        case 40: secondStep(570, 490, _this);
+            break;
+        case 41: secondStep(560, 455, _this);
+            break;
+        case 42: secondStep(560, 425, _this);
+            break;
+        case 43: secondStep(570, 390, _this);
+            break;
+        case 44: secondStep(550, 370, _this);
+            break;
+        case 45: secondStep(515, 380, _this);
+            break;
+        case 46: secondStep(485, 380, _this);
+            break;
+        case 47: secondStep(450, 370, _this);
+            break;
+        case 48: secondStep(440, 335, _this);
+            break;
+        case 49: secondStep(440, 305, _this);
+            break;
+        case 50: secondStep(440, 275, _this);
+            break;
+        case 51: secondStep(485, 275, _this);
+            break;
+        case 52: secondStep(515, 275, _this);
+            break;
+        case 53: secondStep(545, 275, _this);
+            break;
+        case 54: secondStep(575, 275, _this);
+            break;
+        case 55: secondStep(605, 275, _this);
+            break;
+        case 56: secondStep(635, 275, _this);
+            break;
+            
+
+
+
+
+
+
+
+
+
+
+    }
+}
+//黄色飞机根据步数移动
+var yellowjudgeStep = function (steps, _this) {
+    switch (steps) {
+        case 1: {
+            secondStep(760, 60, _this);
+        }
+            break;
+        case 2: {
+            secondStep(770, 95, _this);
+
+        }
+            break;
+        case 3: {
+            secondStep(770, 125, _this);
+
+        }
+            break;
+        case 4: {
+            secondStep(760, 160, _this);
+
+        }
+            break;
+        case 5: {
+            secondStep(780, 180, _this);
+
+
+        }
+            break;
+        case 6: {
+
+            if (_this.isReady == true) {
+                secondStep(815, 170, _this);
+
+            }
+            else {
+                secondStep(780, 40, _this);
+            }
+        }
+            break;
+        case 7: secondStep(845, 170, _this);
+            break;
+        case 8: secondStep(880, 180, _this);
+            break;
+
+        case 9: secondStep(890, 215, _this);
+            break;
+        case 10: secondStep(890, 245, _this);
+            break;
+        case 11: secondStep(890, 275, _this);
+            break;
+        case 12: secondStep(890, 305, _this);
+            break;
+        case 13: secondStep(890, 335, _this);
+            break;
+        case 14: secondStep(880, 370, _this);
+            break
+        case 15: secondStep(845, 380, _this);
+            break;
+        case 16: secondStep(815, 380, _this);
+            break;
+        case 17: secondStep(780, 370, _this);
+            break;
+        case 18: secondStep(760, 390, _this);
+            break;
+        case 19: secondStep(770, 425, _this);
+            break;
+        case 20: secondStep(770, 455, _this);
+            break;
+
+        case 21: secondStep(760, 490, _this);
+            break;
+        case 22: secondStep(725, 500, _this);
+            break;
+        case 23: secondStep(695, 500, _this);
+            break;
+        case 24: secondStep(665, 500, _this);
+            break;
+        case 25: secondStep(635, 500, _this);
+            break;
+        case 26: secondStep(605, 500, _this);
+            break;
+        case 27: secondStep(570, 490, _this);
+            break;
+        case 28: secondStep(560, 455, _this);
+            break;
+        case 29: secondStep(560, 425, _this);
+            break;
+        case 30: secondStep(570, 390, _this);
+            break;
+        case 31: secondStep(550, 370, _this);
+            break;
+        case 32: secondStep(515, 380, _this);
+            break;
+        case 33: secondStep(485, 380, _this);
+            break;
+        case 34: secondStep(450, 370, _this);
+            break;
+        case 35: secondStep(440, 335, _this);
+            break;
+        case 36: secondStep(440, 305, _this);
+            break;
+        case 37: secondStep(440, 275, _this);
+            break;
+        case 38: secondStep(440, 245, _this);
+            break;
+        case 39: secondStep(440, 215, _this);
+            break;
+        case 40:
+            secondStep(450, 180, _this);
+            break;
+        case 41:
+            secondStep(485, 170, _this);
+            break;
+        case 42:
+            secondStep(515, 170, _this);
+            break;
+        case 43:
+            secondStep(550, 180, _this);
+            break;
+        case 44:
+            secondStep(570, 160, _this);
+            break;
+        case 45: {
+            if (_this.isReady == true) {
+                secondStep(560, 125, _this);
+            }
+            else {
+                secondStep(430, 160, _this);
+            }
+        }
+            break;
+        case 46: secondStep(560, 95, _this);
+            break;
+        case 47: secondStep(570, 60, _this);
+            break;
+        case 48: secondStep(605, 50, _this);
+            break;
+        case 49: secondStep(635, 50, _this);
+            break;
+        case 50: secondStep(665, 50, _this);
+            break;
+        case 51: secondStep(665, 95, _this);
+            break;
+        case 52: secondStep(665, 125, _this);
+            break;
+        case 53: secondStep(665, 155, _this);
+            break;
+        case 54: secondStep(665, 185, _this);
+            break;
+        case 55: secondStep(665, 215, _this);
+            break;
+        case 56: secondStep(665, 245, _this);
+            break;
+    }
+}
+var bluejudgeStep = function (steps, _this) {
+    switch (steps) {
+        case 1: {
+            secondStep(880, 370, _this);
+        }
+            break;
+        case 2: {
+            secondStep(845, 380, _this);
+
+        }
+            break;
+        case 3: {
+            secondStep(815, 380, _this);
+
+        }
+            break;
+        case 4: {
+            secondStep(780, 370, _this);
+
+        }
+            break;
+        case 5: {
+            secondStep(760, 390, _this);
+
+
+        }
+            break;
+        case 6: {
+
+            if (_this.isReady == true) {
+                secondStep(770, 425, _this);
+
+            }
+            else {
+                secondStep(900, 390, _this);
+            }
+        }
+            break;
+        case 7: secondStep(770, 455, _this);
+            break;
+
+        case 8: secondStep(760, 490, _this);
+            break;
+        case 9: secondStep(725, 500, _this);
+            break;
+        case 10: secondStep(695, 500, _this);
+            break;
+        case 11: secondStep(665, 500, _this);
+            break;
+        case 12: secondStep(635, 500, _this);
+            break;
+        case 13: secondStep(605, 500, _this);
+            break;
+        case 14: secondStep(570, 490, _this);
+            break;
+        case 15: secondStep(560, 455, _this);
+            break;
+        case 16: secondStep(560, 425, _this);
+            break;
+        case 17: secondStep(570, 390, _this);
+            break;
+        case 18: secondStep(550, 370, _this);
+            break;
+        case 19: secondStep(515, 380, _this);
+            break;
+        case 20: secondStep(485, 380, _this);
+            break;
+        case 21: secondStep(450, 370, _this);
+            break;
+        case 22: secondStep(440, 335, _this);
+            break;
+        case 23: secondStep(440, 305, _this);
+            break;
+        case 24: secondStep(440, 275, _this);
+            break;
+        case 25: secondStep(440, 245, _this);
+            break;
+        case 26: secondStep(440, 215, _this);
+            break;
+        case 27:
+            secondStep(450, 180, _this);
+            break;
+        case 28:
+            secondStep(485, 170, _this);
+            break;
+        case 29:
+            secondStep(515, 170, _this);
+            break;
+        case 30:
+            secondStep(550, 180, _this);
+            break;
+        case 31:
+            secondStep(570, 160, _this);
+            break;
+        case 32:           
+                secondStep(560, 125, _this);    
+            break;
+        case 33: secondStep(560, 95, _this);
+            break;
+        case 34: secondStep(570, 60, _this);
+            break;
+        case 35: secondStep(605, 50, _this);
+            break;
+        case 36: secondStep(635, 50, _this);
+            break;
+        case 37: secondStep(665, 50, _this);
+            break;
+        case 38: secondStep(695, 50, _this);
+            break;
+        case 39: secondStep(725, 50, _this);
+            break;
+        case 40: secondStep(760, 60, _this);
+            break;
+        case 41: secondStep(770, 95, _this);
+            break;
+        case 42: secondStep(770, 125, _this);
+            break;
+        case 43: secondStep(760, 160, _this);
+            break;
+        case 44: secondStep(780, 180, _this);
+            break;
+        case 45: secondStep(815, 170, _this);
+            break;
+        case 46: secondStep(845, 170, _this);
+            break;
+
+        case 47: secondStep(880, 180, _this);
+            break;
+
+        case 48: secondStep(890, 215, _this);
+            break;
+        case 49: secondStep(890, 245, _this);
+            break;
+        case 50: secondStep(890, 275, _this);
+            break;
+        case 51: secondStep(845, 275, _this);
+            break;
+        case 52: secondStep(815, 275, _this);
+            break;
+        case 53: secondStep(785, 275, _this);
+            break;
+        case 54: secondStep(755, 275, _this);
+            break;
+        case 55: secondStep(725, 275, _this);
+            break;
+        case 56: secondStep(695, 275, _this);
+            break;
+    }
+       
+}
+var greenjudgeStep=function(steps,_this){
+    switch (steps) {
+        case 1: {
+
+            secondStep(570, 490, _this);
+
+        }
+            break;
+        case 2: {
+            secondStep(560, 455, _this);
+
+        }
+            break;
+        case 3: {
+            secondStep(560, 425, _this);
+
+        }
+            break;
+        case 4: {
+            secondStep(570, 390, _this);
+
+        }
+            break;
+        case 5: {
+            secondStep(550, 370, _this);
+
+
+        }
+            break;
+        case 6: 
+                secondStep(515, 380, _this);
+            break;
+        case 7: secondStep(485, 380, _this);
+            break;
+        case 8: secondStep(450, 370, _this);
+            break;
+        case 9: secondStep(440, 335, _this);
+            break;
+        case 10: secondStep(440, 305, _this);
+            break;
+        case 11: secondStep(440, 275, _this);
+            break;
+        case 12: secondStep(440, 245, _this);
+            break;
+        case 13: secondStep(440, 215, _this);
+            break;
+        case 14:
+            secondStep(450, 180, _this);
+            break;
+        case 15:
+            secondStep(485, 170, _this);
+            break;
+        case 16:
+            secondStep(515, 170, _this);
+            break;
+        case 17:
+            secondStep(550, 180, _this);
+            break;
+        case 18:
+            secondStep(570, 160, _this);
+            break;
+        case 19:           
+            secondStep(560, 125, _this);    
+            break;
+        case 20: secondStep(560, 95, _this);
+            break;
+        case 21: secondStep(570, 60, _this);
+            break;
+        case 22: secondStep(605, 50, _this);
+            break;
+        case 23: secondStep(635, 50, _this);
+            break;
+        case 24: secondStep(665, 50, _this);
+            break;
+        case 25: secondStep(695, 50, _this);
+            break;
+        case 26: secondStep(725, 50, _this);
+            break;
+        case 27: secondStep(760, 60, _this);
+            break;
+        case 28: secondStep(770, 95, _this);
+            break;
+        case 29: secondStep(770, 125, _this);
+            break;
+        case 30: secondStep(760, 160, _this);
+            break;
+        case 31: secondStep(780, 180, _this);
+            break;
+        case 32: secondStep(815, 170, _this);
+            break;
+        case 33: secondStep(845, 170, _this);
+            break;
+
+        case 34: secondStep(880, 180, _this);
+            break;
+
+        case 35: secondStep(890, 215, _this);
+            break;
+        case 36: secondStep(890, 245, _this);
+            break;
+        case 37: secondStep(890, 275, _this);
+            break;
+        case 38: secondStep(890, 305, _this);
+            break;
+        case 39: secondStep(890, 335, _this);
+            break;
+        case 40: secondStep(880, 370, _this);
+            break
+        case 41: secondStep(845, 380, _this);
+            break;
+        case 42: secondStep(815, 380, _this);
+            break;
+        case 43: secondStep(780, 370, _this);
+            break;
+        case 44: secondStep(760, 390, _this);
+            break;
+        case 45: secondStep(770, 425, _this);
+            break;
+        case 46: secondStep(770, 455, _this);
+            break;
+
+        case 47: secondStep(760, 490, _this);
+            break;
+        case 48: secondStep(725, 500, _this);
+            break;
+        case 49: secondStep(695, 500, _this);
+            break;
+        case 50: secondStep(665, 500, _this);
+            break
+        case 51: secondStep(665, 455, _this);
+            break;
+        case 52: secondStep(665, 425, _this);
+            break;
+        case 53: secondStep(665, 395, _this);
+            break;
+        case 54: secondStep(665, 365, _this);
+            break;
+        case 55: secondStep(665, 335, _this);
+            break;
+        case 50: secondStep(665, 305, _this);
+            break;
+
+    }
+}
+var Clicktwo = function () {
+  
+    this.step += second;
+    var _this = this;
+   
+    console.log("step" + _this.step);
+    if (index == 0 || index == -1) {
+        redjudgeStep(_this.step, _this);
         this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 1) {
-        switch (second) {
-            case 1: {
-                switch (this.clickedtimes) {
-                    case 2: secondStep(760, 60, this);
-                        break;
-                    //case 2:secondStep()
-
-                }
-                
-            }
-                break;
-            case 2: {
-                secondStep(770, 95, this);
-
-            }
-                break;
-            case 3: {
-                secondStep(770, 125, this);
-
-            }
-                break;
-            case 4: {
-                secondStep(760, 160, this);
-
-            }
-                break;
-            case 5: {
-                secondStep(780, 180, this);
-
-
-            }
-                break;
-            case 6: {
-
-                if (this.isReady == true) {
-                    secondStep(815, 170, this);
-
-                }
-                else {
-                    secondStep(780, 40, this);
-                }
-            }
-                break;
-        }
+        yellowjudgeStep(_this.step, _this);
+        
         this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 2) {
-        switch (second) {
-            case 1: {
-                secondStep(370, 880, this);
-            }
-                break;
-            case 2: {
-                secondStep(380, 845, this);
-
-            }
-                break;
-            case 3: {
-                secondStep(380, 815, this);
-
-            }
-                break;
-            case 4: {
-                secondStep(370, 780, this);
-
-            }
-                break;
-            case 5: {
-                secondStep(390, 760, this);
-
-
-            }
-                break;
-            case 6: {
-
-                if (this.isReady == true) {
-                    secondStep(425, 770, this);
-
-                }
-                else {
-                    secondStep(900, 390, this);
-                }
-            }
-                break;
-        }
+        bluejudgeStep(_this.step, _this);
         this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 3) {
-        switch (second) {
-            case 1: {
-                
-                secondStep(570, 490, this);
-
-            }
-                break;
-            case 2: {
-                secondStep(560, 465, this);
-
-            }
-                break;
-            case 3: {
-                secondStep(560, 425, this);
-
-            }
-                break;
-            case 4: {
-                secondStep(570, 390, this);
-
-            }
-                break;
-            case 5: {
-                secondStep(550, 370, this);
-
-
-            }
-                break;
-            case 6: {
-
-                if (this.isReady == true) {
-                    secondStep(515, 380, this);
-
-                }
-                else {
-                    secondStep(550, 510, this);
-                }
-            }
-                break;
-        }
+        greenjudgeStep(_this.step, _this);
         this.removeEventListener('click', Clicktwo, false)
     }
 }
@@ -371,20 +808,40 @@ var Clicktwo = function () {
 //丢到6后再丢调用的函数
 var secondStep = function (x, y, plane) {
     console.log(plane.isReady);
+    
     plane.style.left = x + 'px';
     plane.style.top = y + 'px';
-    plane.clickedtimes++;
-    console.log(plane.clickedtimes);
+    switch (plane.className) {
+        case "red": {
+            if ((550 + 'px') < (plane.style.left) && (plane.style.left) <= (570 + 'px')) {
+                plane.style.transform ="rotate(0deg)";
+            }
+            else if ((570 + 'px') < (plane.style.left) && (plane.style.left) <= (760 + 'px')) {
+                plane.style.transform = "rotate(180deg)";
+            }
+            else if ((760 + 'px') < (plane.style.left) && (plane.style.left) <= (780 + 'px')) {
+                plane.style.transform = "rotate(180deg)";
+            }
+            else if ((780 + 'px') < (plane.style.left) && (plane.style.left) <= (880 + 'px')) {
+                plane.style.transform = "rotate(90deg)";
+            }
+            else if ((880 + 'px') < (plane.style.left) && (plane.style.left) <= (890 + 'px')) {
+                plane.style.transform = "rotate(180deg)";
+            }
+        }
+    }
+    
+    console.log(plane.className);
+  
     isClicked = false;
    
 }
 //判断第二步掷到的数字，并根据步数移动调用Clicktwo
-var Second = function (second, planes) {
+var Second = function (second, plane) {
 
-    console.log(planes.isReady);
-    
-    if (planes.isReady == true) {
-        planes.addEventListener('click', Clicktwo, false);
+   
+    if (plane.isReady == true) {
+        plane.addEventListener('click', Clicktwo, false);
     }
     
     
@@ -396,8 +853,8 @@ var Second = function (second, planes) {
 var FirstMove = function (plane, x, y) {
 
     plane.isReady = true;
-    plane.clickedtimes++;
-    console.log(plane.clickedtimes);
+   
+   
     plane.style.left = x + 'px';
     plane.style.top = y + 'px';
    
@@ -410,7 +867,7 @@ var colorChoose = function (x, y, plane) {
     switch (plane) {
         case "red1": {
             if (red1.isReady == false) {
-                red1.addEventListener('click', FirstMove(red1, x, y), whichPlayer(index));
+                red1.addEventListener('click', FirstMove(red1, x, y));
 
             }
             else if (index == 0 || index == -1) {

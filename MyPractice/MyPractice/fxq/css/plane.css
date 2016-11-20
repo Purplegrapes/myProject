@@ -13,13 +13,24 @@
     position:relative;
     margin:0 auto;
 }
+.rightRotate{
+    transform:rotate(90deg);
+}
+.leftRotate{
+    transform:rotate(-90deg);
+}
 
+.downRotate{
+    transform:rotate(180deg);
+}
 .red {
     width: 20px;
     height: 20px;
     background: url("../images/red.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+    transform:rotate(90deg);
+   
 }
 #red1{
     left: 445px;
@@ -43,6 +54,7 @@
     background: url("../images/yellow.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+     transform:rotate(180deg);
 }
 #yellow1{
     top:55px;
@@ -89,6 +101,7 @@
     background: url("../images/blue.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+    transform:rotate(-90deg);
 }
 #blue1{
     top:445px;
