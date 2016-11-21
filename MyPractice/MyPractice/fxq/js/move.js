@@ -16,8 +16,9 @@ var FisrtAttr = function () {
         planes = planeBox[i].children;
         for (var j = 0; j < planes.length; j++) {
             planes[j].isReady = false;
-            planes[j].clickedtimes = 0;
+            
             planes[j].step = 0;
+
         }
     }
    
@@ -63,8 +64,7 @@ var whichPlayer = function (index) {
 };
 
 $('.container').click(function () {
-    change();
-    
+    change();    
     FirstClick();
 });
 
@@ -72,8 +72,8 @@ $('.container').click(function () {
 
 var FirstClick = function () {
     nums.push(number);
-   
-    nums = nums.length - 2 > 0 ? nums.splice(-1, nums.length - 1) : nums;
+   nums=nums.slice(nums.length - 2, nums.length);
+    //nums = nums.length - 2 > 0 ? nums.splice(-1, nums.length - 1) : nums;
     console.log(nums);
      if (nums[nums.length - 1] == 6||nums[nums.length-2]==6) {
         first = 6;
@@ -81,13 +81,14 @@ var FirstClick = function () {
     else {
         first = nums[0];
     }
+   
     
     
     console.log("first:" + first);
     nowIndex();
 
     if (first == 6) {
-        second = nums[nums.length - 1];
+        second = nums[1];
 
     }
     else {
@@ -184,8 +185,7 @@ function Clickone() {
 //第一次掷到6后掷第二次，如果起飞了根据累计步数改变position执行secondStep()，
 //如果isReady==false并且second==6，就执行firstMove()
 //红色飞机根据步数移动
-var redjudgeStep = function (steps,_this) {
-    
+var redjudgeStep = function (steps,_this) {   
     switch (steps) {
         case 1:
             secondStep(450, 180, _this);
@@ -202,14 +202,14 @@ var redjudgeStep = function (steps,_this) {
         case 5: 
             secondStep(570, 160, _this);
             break;
-        case 6: {
-            if (_this.isReady == true) {
+        case 6: 
+            
                 secondStep(560, 125, _this);
-            }
-            else {
-                secondStep(430, 160, _this);
-            }
-        }
+            
+            //else {
+            //    FirstMove(430, 160, _this);
+            //}
+        
             break;
         case 7: secondStep(560, 95, _this);
             break;
@@ -482,6 +482,7 @@ var yellowjudgeStep = function (steps, _this) {
             break;
     }
 }
+//蓝色飞机根据步数移动
 var bluejudgeStep = function (steps, _this) {
     switch (steps) {
         case 1: {
@@ -632,6 +633,7 @@ var bluejudgeStep = function (steps, _this) {
     }
        
 }
+//绿色飞机根据步数移动
 var greenjudgeStep=function(steps,_this){
     switch (steps) {
         case 1: {
@@ -777,27 +779,24 @@ var greenjudgeStep=function(steps,_this){
     }
 }
 var Clicktwo = function () {
-  
-    this.step += second;
     var _this = this;
-   
-    console.log("step" + _this.step);
-    if (index == 0 || index == -1) {
+    _this.step += second;
+  console.log("step" + _this.step);
+    if ((index == 0 || index == -1)) {
         redjudgeStep(_this.step, _this);
-        this.removeEventListener('click', Clicktwo, false)
+        //_this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 1) {
-        yellowjudgeStep(_this.step, _this);
-        
-        this.removeEventListener('click', Clicktwo, false)
+        yellowjudgeStep(_this.step, _this);       
+        _this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 2) {
         bluejudgeStep(_this.step, _this);
-        this.removeEventListener('click', Clicktwo, false)
+        _this.removeEventListener('click', Clicktwo, false)
     }
     else if (index == 3) {
         greenjudgeStep(_this.step, _this);
-        this.removeEventListener('click', Clicktwo, false)
+        _this.removeEventListener('click', Clicktwo, false)
     }
 }
 
@@ -811,25 +810,47 @@ var secondStep = function (x, y, plane) {
     
     plane.style.left = x + 'px';
     plane.style.top = y + 'px';
-    switch (plane.className) {
-        case "red": {
-            if ((550 + 'px') < (plane.style.left) && (plane.style.left) <= (570 + 'px')) {
-                plane.style.transform ="rotate(0deg)";
+   
+            if ((160 < y &&y<=180)&&(450<=x)&&(x<570)) {
+                plane.style.transform ="rotate(90deg)";
             }
-            else if ((570 + 'px') < (plane.style.left) && (plane.style.left) <= (760 + 'px')) {
-                plane.style.transform = "rotate(180deg)";
+            else if ((430 < x &&x<= 570 )&& (60 < y &&y<=160)) {
+                plane.style.transform = "rotate(0deg)";
             }
-            else if ((760 + 'px') < (plane.style.left) && (plane.style.left) <= (780 + 'px')) {
-                plane.style.transform = "rotate(180deg)";
-            }
-            else if ((780 + 'px') < (plane.style.left) && (plane.style.left) <= (880 + 'px')) {
+            else if ((570 <= x)&&(x <760) && (50 <= y&&y <=60)) {
                 plane.style.transform = "rotate(90deg)";
             }
-            else if ((880 + 'px') < (plane.style.left) && (plane.style.left) <= (890 + 'px')) {
-                plane.style.transform = "rotate(180deg)";
+            else if ((760 <= x &&x<780 )&&( 60 <= y&&y <180)) {
+                plane.style.transform = "rotate(180deg)";//14-18
             }
-        }
-    }
+            else if ((780 <= x &&x<880) && (170 <= y&&y <= 180)) {
+                plane.style.transform = "rotate(90deg)";//18-21
+            }
+
+            else if ((880<=x&&x<=890)&&(180<=y&&y <370) ) {
+                plane.style.transform = "rotate(180deg)";//21-27
+            }
+            else if ((760<x&&x<=880)&&(370<=y&&y<390)) {
+                plane.style.transform = "rotate(-90deg)";//27-31
+            }
+            else if ((760<=x&&x<=770)&&(390<=y&&y<490)) {
+                plane.style.transform = "rotate(180deg)";//31-34
+            }
+            else if ((570<x&&x<=760)&&(490<=y&&y<=500)) {
+                plane.style.transform = "rotate(-90deg)";//34-40
+            }
+            else if ( (550< x&&x <=570) && (370 < y &&y<=490)) {
+                plane.style.transform = "rotate(0deg)";//40-44
+            }
+            else if ((450 < x&&x <= 550) && (180 < y&&y<=380)) {
+                plane.style.transform = "rotate(-90deg)";//44-47
+            }
+            else if ((440<=x&&x <=450) && (275 <= y&&y < 380)) {
+                plane.style.transform = "rotate(0deg)";//47-1;
+            }
+           
+        
+    
     
     console.log(plane.className);
   
@@ -838,14 +859,12 @@ var secondStep = function (x, y, plane) {
 }
 //判断第二步掷到的数字，并根据步数移动调用Clicktwo
 var Second = function (second, plane) {
-
-   
     if (plane.isReady == true) {
         plane.addEventListener('click', Clicktwo, false);
+        
     }
-    
-    
     console.log("nowindex" + index);
+    
 }
 
 
