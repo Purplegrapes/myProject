@@ -94,6 +94,10 @@ function change() {
         number = 6;
         a++;
     }
+    else if (a == 1) {
+        number = 2;
+        a++;
+    }
     else { 
     number = parseInt(arr[1].getAttribute("data-num"));
     }
