@@ -11,47 +11,55 @@
     <link href="css/map.css" rel="stylesheet" />
     <link href="css/plane.css" rel="stylesheet" />
     <link href="css/rotate.css" rel="stylesheet" />
+   
+
 </head>
 <body>
-    <canvas id="canvas"></canvas>   
-    <div class="container1">
-        <div class="planeBox">
-            <div class="red" id="red1"></div>
-            <div class="red" id="red2"></div>
-            <div class="red" id="red3"></div>
-            <div class="red" id="red4"></div>
+    <div class="Box">
+        <canvas id="canvas"></canvas>
+        <div class="container1">
+            <div class="planeBox" id="planeBox0">
+                <div class="red" id="red1"></div>
+                <div class="red" id="red2"></div>
+                <div class="red" id="red3"></div>
+                <div class="red" id="red4"></div>
+            </div>
+            <div class="planeBox" id="planeBox1">
+                <div class="yellow" id="yellow1"></div>
+                <div class="yellow" id="yellow2"></div>
+                <div class="yellow" id="yellow3"></div>
+                <div class="yellow" id="yellow4"></div>
+            </div>
+            <div class="planeBox" id="planeBox3">
+                <div class="blue" id="blue1"></div>
+                <div class="blue" id="blue2"></div>
+                <div class="blue" id="blue3"></div>
+                <div class="blue" id="blue4"></div>
+            </div>
+            <div class="planeBox" id="planeBox2">
+                <div class="green" id="green1"></div>
+                <div class="green" id="green2"></div>
+                <div class="green" id="green3"></div>
+                <div class="green" id="green4"></div>
+            </div>
+
+
+
+
         </div>
-        <div class="planeBox">
-            <div class="yellow" id="yellow1"></div>
-            <div class="yellow" id="yellow2"></div>
-            <div class="yellow" id="yellow3"></div>
-            <div class="yellow" id="yellow4"></div>
+        <div class="container">
+            <canvas class="canvas" id="one" data-num="1"></canvas>
+            <canvas class="canvas" id="two" data-num="2"></canvas>
+            <canvas class="canvas" id="three" data-num="3"></canvas>
+            <canvas class="canvas" id="four" data-num="4"></canvas>
+            <canvas class="canvas" id="five" data-num="5"></canvas>
+            <canvas class="canvas" id="six" data-num="6"></canvas>
         </div>
-        <div class="planeBox">
-            <div class="green" id="green1"></div>
-            <div class="green" id="green2"></div>
-            <div class="green" id="green3"></div>
-            <div class="green" id="green4"></div>
-        </div>
-        <div class="planeBox">
-            <div class="blue" id="blue1"></div>
-            <div class="blue" id="blue2"></div>
-            <div class="blue" id="blue3"></div>
-            <div class="blue" id="blue4"></div>
-        </div>
-       
-        
-        
     </div>
-    <div class="container">
-        <canvas class="canvas" id="one" data-num="1"></canvas>
-        <canvas class="canvas" id="two" data-num="2"></canvas>
-        <canvas class="canvas" id="three" data-num="3"></canvas>
-        <canvas class="canvas" id="four" data-num="4"></canvas>
-        <canvas class="canvas" id="five" data-num="5"></canvas>
-        <canvas class="canvas" id="six" data-num="6"></canvas>
-    </div>
+    
+   
     <script src="js/jquery-1.10.2.js"></script>
+    
     <script src="js/map.js"></script>
     <script src="js/rotate.js"></script>
     <script src="js/move.js"></script>

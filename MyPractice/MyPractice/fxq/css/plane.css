@@ -1,10 +1,27 @@
 ﻿.container1{
-    width:560px;
-    height:550px;
+    
     margin:0 auto;
     position:absolute;
-    top:0;
-    left:14.9%;
+    position: absolute;
+    left: -70.5%;
+    top: -1.5%;
+   
+}
+.Box{
+    width:560px;
+    height:560px;
+    position:relative;
+    margin:0 auto;
+}
+.rightRotate{
+    transform:rotate(90deg);
+}
+.leftRotate{
+    transform:rotate(-90deg);
+}
+
+.downRotate{
+    transform:rotate(180deg);
 }
 .red {
     width: 20px;
@@ -12,22 +29,29 @@
     background: url("../images/red.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+    
+   
 }
 #red1{
-    left: 445px;
-    top: 55px;
+    /*left: 445px;
+    top: 55px;*/
+     transform: translate(445px,55px) rotate(90deg);
 }
 #red2{
-    left: 495px;
-    top: 55px;
+    /*left: 495px;
+    top: 55px;*/
+     transform: translate(495px,55px) rotate(90deg);
 }
 #red3{
-    left: 445px;
-    top: 105px;
+    /*left: 445px;
+    top: 105px;*/
+    transform: translate(445px,105px) rotate(90deg);
+    
 }
 #red4{
-    left: 495px;
-    top: 105px;
+    /*left: 495px;
+    top: 105px;*/
+     transform: translate(495px,105px) rotate(90deg);
 }
 .yellow{
      width: 20px;
@@ -35,22 +59,27 @@
     background: url("../images/yellow.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+     
 }
 #yellow1{
-    top:55px;
-    left:835px;
+    /*top:55px;
+    left:835px;*/
+     transform: translate(835px,55px) rotate(180deg);
 }
 #yellow2{
-    top:55px;
-    left:885px;
+    /*top:55px;
+    left:885px;*/
+     transform: translate(885px,55px) rotate(180deg);
 }
 #yellow3{
-    top:105px;
-    left:835px;
+    /*top:105px;
+    left:835px;*/
+     transform: translate(835px,105px) rotate(180deg);
 }
 #yellow4{
-    top:105px;
-    left:885px;
+    /*top:105px;
+    left:885px;*/
+     transform: translate(885px,105px) rotate(180deg);
 }
 .green{
      width: 20px;
@@ -60,20 +89,24 @@
     transition: all 1s;
 }
 #green1{
-    top:445px;
-    left:445px;
+    /*top:445px;
+    left:445px;*/
+     transform: translate(445px,445px) rotate(0deg);
 }
 #green2{
-    top:495px;
-    left:445px;
+    /*top:495px;
+    left:445px;*/
+    transform: translate(445px,495px) rotate(0deg);
 }
 #green3{
-    top:495px;
-    left:495px;
+    /*top:495px;
+    left:495px;*/
+    transform: translate(495px,495px) rotate(0deg);
 }
 #green4{
-    top:445px;
-    left:495px;
+    /*top:445px;
+    left:495px;*/
+    transform: translate(495px,445px) rotate(0deg);
 }
 .blue{
      width: 20px;
@@ -81,20 +114,25 @@
     background: url("../images/blue.png") no-repeat center;
     position: absolute;
     transition: all 1s;
+    
 }
 #blue1{
-    top:445px;
-    left:885px;
+    /*top:445px;
+    left:885px;*/
+    transform: translate(885px,445px) rotate(-90deg);
 }
 #blue2{
-    top:445px;
-    left:835px;
+    /*top:445px;
+    left:835px;*/
+     transform: translate(835px,445px) rotate(-90deg);
 }
 #blue3{
-    top:495px;
-    left:835px;
+    /*top:495px;
+    left:835px;*/
+     transform: translate(835px,495px) rotate(-90deg);
 }
 #blue4{
-    top:495px;
-    left:885px;
+    /*top:495px;
+    left:885px;*/
+     transform: translate(885px,495px) rotate(-90deg);
 }
