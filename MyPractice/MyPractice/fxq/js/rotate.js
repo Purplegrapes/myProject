@@ -95,12 +95,21 @@ function change() {
         a++;
     }
     else if (a == 1) {
-        number = 2;
+        number = 6;
         a++;
     }
+    else if (a == 2) {
+        number = 6;
+        a++;
+    }
+   
+  
+   
     else { 
     number = parseInt(arr[1].getAttribute("data-num"));
     }
+    
+    
     $('.container').get(0).addEventListener("animationend", function () {
         $('.container').removeClass('animate');
     })
