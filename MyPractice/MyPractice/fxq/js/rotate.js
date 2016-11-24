@@ -102,6 +102,22 @@ function change() {
         number = 6;
         a++;
     }
+    else if (a == 3) {
+        number = 6;
+        a++;
+    }
+    else if (a == 4) {
+        number = 6;
+        a++;
+    }
+    else if (a == 5) {
+        number = 6;
+        a++;
+    }
+    else if (a == 6) {
+        number = 6;
+        a++;
+    }
    
   
    
