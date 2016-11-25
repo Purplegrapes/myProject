@@ -17,6 +17,7 @@ var FisrtAttr = function () {
         for (var j = 0; j < planes.length; j++) {
             planes[j].isReady = false;
             planes[j].step = 0;
+            planes[j].endStep = 0;
 
 
         }
@@ -209,23 +210,15 @@ var Clicktwo = function (plane) {
   
     console.log(index);
     var _this = plane;
-    var cuStep = _this.step + second;
-    if (cuStep > 64) {
-    //    //endDirection();
-    //    //_this.step = 56 - (cuStep - 56);
-       
-    //}
-    //else if (cuStep == 56) {
-        //    planeBox.score++;
-        _this.step = cuStep - 64;
-    }
-    else {
-        _this.step += second;//得到起飞飞机的行走步数
-    }
+    _this.endStep = _this.step;
+    _this.step = _this.step + second;
+    //得到起飞飞机的行走步数
+        secondStep(_this, _this.step);//根据步数调用secondStep();
+    
     
     
     console.log("step" + _this.step);
-    secondStep(_this, _this.step);//根据步数调用secondStep();
+   
     if (_this.step == 56) {
         switch (index) {
             case 0: {
@@ -526,21 +519,21 @@ var secondStep = function (_this, steps) {
                             Fly(485, 275, _this);
                         })
                         break;
-                    case 62:
-                        Fly(455, 275, _this);
-                        $(_this).one(transitionEvent, function () {
-                            fastFly(485, 170, _this);
-                        })
+                    //case 62:
+                    //    Fly(455, 275, _this);
+                    //    $(_this).one(transitionEvent, function () {
+                    //        fastFly(485, 170, _this);
+                    //    })
                        
-                        break
-                    case 63:
-                        Fly(455, 245, _this);
+                    //    break
+                    //case 63:
+                    //    Fly(455, 245, _this);
 
-                        break;
-                    case 64:
-                        Fly(455, 215, _this);
+                    //    break;
+                    //case 64:
+                    //    Fly(455, 215, _this);
 
-                        break;
+                    //    break;
                 }
             }
             break
@@ -556,7 +549,7 @@ var secondStep = function (_this, steps) {
                         {
                             Fly(770, 95, _this);
                             $(_this).one(transitionEvent, function () {
-                                fastFly(760, 160, _this);
+                                fastFly(815, 170, _this);
                             })
                         }
                         break;
@@ -771,6 +764,36 @@ var secondStep = function (_this, steps) {
                     case 56:
                         Fly(665, 245, _this);
                         break;
+                    case 57:
+                        Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 215, _this);
+                        })
+                        break;
+                    case 58:
+                        Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 185, _this);
+                        })
+                        break;
+                    case 59:
+                        Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 155, _this);
+                        })
+                        break;
+                    case 60:
+                        Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 125, _this);
+                        })
+                        break;
+                    case 61:
+                        Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 95, _this);
+                        })
+                        break;
                 }
             }
             break;
@@ -786,7 +809,7 @@ var secondStep = function (_this, steps) {
                         {
                             Fly(845, 380, _this);
                             $(_this).one(transitionEvent, function () {
-                                fastFly(780, 370, _this);
+                                fastFly(770, 425, _this);
                             })
                         }
                         break;
@@ -1000,11 +1023,51 @@ var secondStep = function (_this, steps) {
                         break;
                     case 56: {
                         Fly(695, 275, _this);
-                        planeBox[0].score++;
-                        console.log(planeBox[0].score);
+                        
                     }
                        
                         break;
+                    case 57: {
+                        Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(725, 275, _this);
+                        })
+                    }
+
+                        break;
+                    case 58: {
+                        Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(755, 275, _this);
+                        })
+                    }
+
+                        break;
+                    case 59: {
+                        Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(785, 275, _this);
+                        })
+                    }
+
+                        break;
+                    case 60: {
+                        Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(815, 275, _this);
+                        })
+                    }
+
+                        break;
+                    case 61: {
+                        Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(845, 275, _this);
+                        })
+                    }
+
+                        break;
+                   
                 }
             }
             break;
@@ -1236,9 +1299,44 @@ var secondStep = function (_this, steps) {
                     case 56:
                         Fly(665, 305, _this);
                         break;
-
+                    case 57:
+                        Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 335, _this);
+                        })
+                        break;
+                    case 58:
+                        Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 365, _this);
+                        })
+                        break;
+                    case 59:
+                        Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 395, _this);
+                        })
+                        break;
+                    case 60:
+                        Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 425, _this);
+                        })
+                        break;
+                    case 61:
+                        Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(665, 455, _this);
+                        })
+                        break;
+                   
                 }
             }
+           
+    }
+    if (steps > 56) {
+        _this.step = _this.endStep - (second - (56 - _this.endStep) * 2);
+        console.log(_this.step);
     }
 
 
@@ -1286,14 +1384,14 @@ var Direction = function (x, y) {
     }
         //绿色终点方向
     else if (x == 665 && (305 <= y && y <= 500)) {
-        angle = 180;
+        angle = 0;
     }
 }
 var endDirection = function () {
     switch (index) {
 
         case 0: {
-            angle = 270;
+            angle =270;
         }
             break;
         case 1: {
@@ -1333,23 +1431,33 @@ var transitionEvent = whichTransitionEvent();
 var Fly = function (x, y, plane) {
    
     //根据坐标转换方向
-    console.log(index);
-    if (plane.step > 56&&plane.step<62) {
-        endDirection();
-    }
-    else {
+    console.log(plane.step);
+    console.log(angle);
+    if (plane.step <= 56&&plane.endStep<=56) {
         Direction(x, y);
     }
     
+   
+    else {
+       
+            endDirection();
+    }
+    
+    console.log(angle);
     plane.style.webkitTransform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate(' + angle + "deg" + ')';
-    console.log(plane.step);
+   
     
 }
 
 //
 var fastFly = function (x, y, plane) {
     
-    plane.step = plane.step + 4;
+    if (plane.step == 18) {
+        plane.step = plane.step + 12;
+    }
+    else {
+        plane.step = plane.step + 4;
+    }
     
     Direction(x, y);
     plane.style.transform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate('+angle+'deg'+')';

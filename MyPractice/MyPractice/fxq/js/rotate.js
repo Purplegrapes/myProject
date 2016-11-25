@@ -99,42 +99,46 @@ function change() {
         a++;
     }
     else if (a == 2) {
-        number = 6;
+        number = 4;
         a++;
     }
-    else if (a == 3) {
-        number = 6;
-        a++;
-    }
-    else if (a == 4) {
-        number = 6;
-        a++;
-    }
-    else if (a == 5) {
-        number = 6;
-        a++;
-    }
-    else if (a == 6) {
-        number = 6;
-        a++;
-    }
-    else if (a == 7) {
-        number = 6;
-        a++;
-    }
-    else if (a == 8) {
-        number = 6;
-        a++;
+    //else if (a == 3) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 4) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 5) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 6) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 7) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 8) {
+    //    number = 6;
+    //    a++;
 
-    }
-    else if (a == 9) {
-        number = 6;
-        a++;
-    }
-    else if (a == 10) {
-        number = 6;
-        a++;
-    }
+    //}
+    //else if (a == 9) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 10) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 11) {
+    //    number = 5;
+    //    a++;
+    //}
 
 
 
