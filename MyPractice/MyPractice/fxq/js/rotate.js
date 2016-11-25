@@ -118,11 +118,28 @@ function change() {
         number = 6;
         a++;
     }
-   
-  
-   
-    else { 
-    number = parseInt(arr[1].getAttribute("data-num"));
+    else if (a == 7) {
+        number = 6;
+        a++;
+    }
+    else if (a == 8) {
+        number = 6;
+        a++;
+
+    }
+    else if (a == 9) {
+        number = 6;
+        a++;
+    }
+    else if (a == 10) {
+        number = 6;
+        a++;
+    }
+
+
+
+    else {
+        number = parseInt(arr[1].getAttribute("data-num"));
     }
     
     

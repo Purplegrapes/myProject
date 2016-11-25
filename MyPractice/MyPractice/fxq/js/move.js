@@ -24,28 +24,6 @@ var FisrtAttr = function () {
 
 }();
 
-
-var whichPlayer = function (index) {
-
-    switch (index) {
-        case -1:
-            alert("红色玩家该你了");
-            break;
-        case 0:
-            alert("红色玩家该你了");
-            break;
-        case 1:
-            alert("黄色玩家该你了");
-            break;
-        case 2:
-            alert("蓝色玩家该你了");
-            break;
-        case 3:
-            alert("绿色玩家该你了");
-            break;
-    }
-};
-
 $('.container').click(function () {
     change();//骰子数变换
     FirstClick();//
@@ -81,6 +59,7 @@ var nowIndex = function () {
     }
     console.log("number" + number);
     console.log("index:" + index);
+   
     return index;
 }
 var FirstClick = function () {
@@ -88,12 +67,13 @@ var FirstClick = function () {
     console.log("second:" + second);
     //找到index的盒子里面的飞机
     //如果first==6，就依次为每架飞机添加click事件，并调用colorChoose
-    if (first == 6) {
+
+    if (first==6) {
         if (index == -1 || index == 0) {
             index = 0;
             var replanes = planeBox[0].children;
             console.log(second);
-
+            
             for (var i = 0; i < replanes.length; i++) {
 
                 replanes[i].addEventListener('click', colorChoose, false);
@@ -175,18 +155,26 @@ function colorChoose() {
             break;
     }
     for (var i = 0; i < planeBox[index].children.length; i++) {
-        planeBox[index].children[i].removeEventListener("click", colorChoose);    //得到点击的飞机后就移除colorChoose的点击事件   
+        
+            planeBox[index].children[i].removeEventListener("click", colorChoose);
+        
+          //得到点击的飞机后就移除colorChoose的点击事件   
     }
+
 }
 var FirstMove = function (plane, x, y) {
     
 
-    if (second == 6 || second == null || second == undefined) {
-        plane.addEventListener('click', startFly(plane, x, y), false);//满足以上条件就为飞机添加起飞点击事件
+    if ((first==6&&(second == undefined||second==null))||(second == 6&& first==6)) {
+        $(plane).one('click', startFly(plane, x, y), false);//满足以上条件就为飞机添加起飞点击事件
         cliPlane = plane;//保存当前点击的飞机
-    } else if (plane.isReady == true) {
-        plane.addEventListener('click', Clicktwo(plane), false);//如果飞机已经起飞了，就添加判断步数的事件
     }
+    else if (cliPlane.isReady == true) {
+        $(cliPlane).one('click', Clicktwo(cliPlane), false);//如果飞机已经起飞了，就添加判断步数的事件
+    }
+    //else if (second !== 6) {
+    //    $(cliPlane).one('click', colorChoose, false);
+    //}
 }
 //第一次掷到6.点击飞机起飞
 var startFly = function (plane, x, y) {
@@ -205,33 +193,84 @@ var startFly = function (plane, x, y) {
     }
 
     plane.isReady = true;//将起飞属性设置为true
+    
     plane.style.webkitTransform = 'translate(' + (x+'px')+','+(y+'px') + ')'+'rotate('+ang+'deg)';
     
     isClicked = false;
-    plane.removeEventListener('click', startFly, false);//移除起飞事件
+    //plane.removeEventListener('click', startFly, false);//移除起飞事件
 }
 //如果飞机已经到达起飞点，就传入second的值，添加第二次点击事件
 var Second = function (second, plane) {
-    if (first == 6) {
-        plane.addEventListener('click', Clicktwo(plane), false);
-    }
     
-
+        $(plane).one('click', Clicktwo(plane), false);
     console.log("nowindex" + index);
 }
 var Clicktwo = function (plane) {
+  
+    console.log(index);
     var _this = plane;
     var cuStep = _this.step + second;
-    if (cuStep > 56) {
-        _this.step = 56 - (cuStep-56);
+    if (cuStep > 64) {
+    //    //endDirection();
+    //    //_this.step = 56 - (cuStep - 56);
+       
+    //}
+    //else if (cuStep == 56) {
+        //    planeBox.score++;
+        _this.step = cuStep - 64;
     }
     else {
         _this.step += second;//得到起飞飞机的行走步数
     }
     
+    
     console.log("step" + _this.step);
     secondStep(_this, _this.step);//根据步数调用secondStep();
-    _this.removeEventListener('click', Clicktwo, false);
+    if (_this.step == 56) {
+        switch (index) {
+            case 0: {
+                planeBox[0].score++;
+                if (planeBox[0].score == 4) {
+                    setTimeout(function(){
+                        alert("红色玩家获得胜利")
+                        },1000);
+                }
+                
+            }
+                break;
+            case 1: {
+                planeBox[1].score++;
+                if (planeBox[1].score == 4) {
+                    setTimeout(function () {
+                        alert("黄色玩家获得胜利")
+                    }, 1000);
+                }
+            }
+                break;
+            case 2: {
+                planeBox[2].score++;
+                if (planeBox[2].score == 4) {
+                    setTimeout(function () {
+                        alert("蓝色玩家获得胜利")
+                    }, 1000);
+                }
+            }
+                break;
+            case 3:
+                {
+                    planeBox[3].score++;
+                    if (planeBox[3].score == 4) {
+                        setTimeout(function () {
+                            alert("绿色玩家获得胜利")
+                        }, 1000);
+                    }
+                }
+                break;
+        }
+
+
+    }
+   
 }
 var secondStep = function (_this, steps) {
     //根据飞机的class设置Fly()的参数
@@ -243,26 +282,26 @@ var secondStep = function (_this, steps) {
                 switch (steps) {
                     case 1:
 
-                        Fly(450, 180, _this, steps);
+                        Fly(450, 180, _this);
                         break;
                     case 2:                       
-                        Fly(485, 170, _this, steps);                       
+                        Fly(485, 170, _this);                       
                         $(_this).one(transitionEvent, function () {
                             fastFly( 560, 125,_this);
                         })
                         break;
                     case 3:
-                        Fly(515, 170, _this, steps);
+                        Fly(515, 170, _this);
                         break;
                     case 4:
-                        Fly(550, 180, _this, steps);
+                        Fly(550, 180, _this);
                         break;
                     case 5:
-                        Fly(570, 160, _this, steps);
+                        Fly(570, 160, _this);
                         break;
                     case 6:
                        
-                            Fly(560, 125, _this, steps);
+                            Fly(560, 125, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly( 635, 50,_this);
                             })
@@ -271,31 +310,31 @@ var secondStep = function (_this, steps) {
                       
                         break;
                     case 7:
-                        Fly(560, 95, _this, steps);
+                        Fly(560, 95, _thiss);
                         break;
                     case 8:
-                        Fly(570, 60, _this, steps);
+                        Fly(570, 60, _this);
                         break;
                     case 9:
-                        Fly(605, 50, _this, steps);
+                        Fly(605, 50, _this);
                         break;
                     case 10:
-                        Fly(635, 50, _this, steps);
+                        Fly(635, 50, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(760, 60,_this );
                         })
                         break;
                     case 11:
-                        Fly(665, 50, _this, steps);
+                        Fly(665, 50, _this);
                         break;
                     case 12:
-                        Fly(695, 50, _this, steps);
+                        Fly(695, 50, _this);
                         break;
                     case 13:
-                        Fly(725, 50, _this, steps);
+                        Fly(725, 50, _this);
                         break;
                     case 14:
-                        Fly(760, 60, _this, steps);
+                        Fly(760, 60, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(780, 180, _this);
                             $(_this).one(transitionEvent, function () {
@@ -305,10 +344,10 @@ var secondStep = function (_this, steps) {
                        
                         break;
                     case 15:
-                        Fly(770, 95, _this, steps);
+                        Fly(770, 95, _this);
                         break;
                     case 16:
-                        Fly(770, 125, _this, steps);
+                        Fly(770, 125, _this);
                         break;
                     case 17:
                         Fly(760, 160, _this);
@@ -458,7 +497,49 @@ var secondStep = function (_this, steps) {
                         Fly(635, 275, _this);
                         break;
                     case 57:
-                        Fly(605, 275, _this);
+                        Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(605, 275, _this);
+                        })
+                        break;
+                    case 58:
+                        Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(575, 275, _this);
+                        })
+                        break;
+                    case 59:
+                        Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(545, 275, _this);
+                        })
+                        break;
+                    case 60:
+                        Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(515, 275, _this);
+                        })
+                        break;
+                    case 61:
+                        Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Fly(485, 275, _this);
+                        })
+                        break;
+                    case 62:
+                        Fly(455, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            fastFly(485, 170, _this);
+                        })
+                       
+                        break
+                    case 63:
+                        Fly(455, 245, _this);
+
+                        break;
+                    case 64:
+                        Fly(455, 215, _this);
+
                         break;
                 }
             }
@@ -1208,6 +1289,28 @@ var Direction = function (x, y) {
         angle = 180;
     }
 }
+var endDirection = function () {
+    switch (index) {
+
+        case 0: {
+            angle = 270;
+        }
+            break;
+        case 1: {
+            angle = 0;
+        }
+            break;
+        case 2: {
+            angle = 90;
+        }
+            break;
+        case 3:
+            {
+                angle =180;
+            }
+            break;
+    }
+}
 function whichTransitionEvent() {
     var t;
     var el = document.createElement('fakeelement');
@@ -1227,72 +1330,29 @@ function whichTransitionEvent() {
 
 /* 监听变换事件! */
 var transitionEvent = whichTransitionEvent();
-var Fly = function (x, y, plane, steps) {
+var Fly = function (x, y, plane) {
    
-    //plane.style.left = x + 'px';
-    //plane.style.top = y + 'px';
-    Direction(x, y);
-    plane.style.webkitTransform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate('+angle+"deg"+')'
-
-   
-    //$(plane).animate({ left: x, top: y }, Direction(x, y, plane));
-    //console.log($(plane).is(":animated"));
+    //根据坐标转换方向
+    console.log(index);
+    if (plane.step > 56&&plane.step<62) {
+        endDirection();
+    }
+    else {
+        Direction(x, y);
+    }
     
-        switch (steps) {//steps等于相应值可行进到下一个同色的步数
-            case 2:
-                {
-                    plane.step = 6;
-                                
-                }
-                break;
-            case 6:
-                
-                plane.step = 10;
-                break;
-            case 10:
-                plane.step = 14;
-                break;
-            case 14:
-                plane.step = 30;
-               
-                break;
-            case 18:
-                plane.step = 30;
-                break;
-            case 22:
-                plane.step = 26;
-                break;
-            case 26:
-                plane.step = 30;
-                break;
-            case 30:
-                plane.step = 34;
-                break;
-            case 34:
-                plane.step = 38;
-                break;
-            case 38:
-                plane.step = 42;
-                break;
-            case 42:
-                plane.step = 46;
-          
-                break;
-            case 46:
-                plane.step = 50;
-
-                break;
-        }
-        //根据坐标转换方向
-
-        console.log(plane.step);
+    plane.style.webkitTransform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate(' + angle + "deg" + ')';
+    console.log(plane.step);
+    
 }
 
 //
-var fastFly = function (x,y,plane) {
-
+var fastFly = function (x, y, plane) {
+    
+    plane.step = plane.step + 4;
+    
     Direction(x, y);
-   plane.style.transform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate('+angle+'deg'+')';
+    plane.style.transform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate('+angle+'deg'+')';
     //$(plane).animate({ left: x, top: y });
     
 }
