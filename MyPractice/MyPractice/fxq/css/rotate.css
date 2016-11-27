@@ -26,7 +26,7 @@
 }
 .canvas{
 	position:absolute;
-	background: #607D8B;
+	background: rgb(216,34,13);
 	border-radius: 5px;
 	border:1px solid #000;
 	border:1px solid #fff;

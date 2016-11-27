@@ -90,18 +90,18 @@ function change() {
         arr[i] = temp;
     }
     $('.container').html(arr);
-    if (a == 0) {
-        number = 6;
-        a++;
-    }
-    else if (a == 1) {
-        number = 6;
-        a++;
-    }
-    else if (a == 2) {
-        number = 4;
-        a++;
-    }
+    //if (a == 0) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 1) {
+    //    number = 6;
+    //    a++;
+    //}
+    //else if (a == 2) {
+    //    number = 4;
+    //    a++;
+    //}
     //else if (a == 3) {
     //    number = 6;
     //    a++;
@@ -142,9 +142,9 @@ function change() {
 
 
 
-    else {
+    
         number = parseInt(arr[1].getAttribute("data-num"));
-    }
+    
     
     
     $('.container').get(0).addEventListener("animationend", function () {
