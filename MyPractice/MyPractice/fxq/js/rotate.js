@@ -91,50 +91,50 @@ function change() {
     }
     $('.container').html(arr);
     if (a == 0) {
-        number = 6;
+        number = 0;
         a++;
     }
     else if (a == 1) {
+        number = 1;
+        a++;
+    }
+    else if (a == 2) {
+        number = 1;
+        a++;
+    }
+    else if (a == 3) {
+        number = 6;
+        a++;
+    }
+    else if (a == 4) {
+        number = 6;
+        a++;
+    }
+    else if (a == 5) {
+        number = 6;
+        a++;
+    }
+    else if (a == 6) {
+        number = 6;
+        a++;
+    }
+    else if (a == 7) {
+        number = 6;
+        a++;
+    }
+    else if (a == 8) {
+        number = 6;
+        a++;
+
+    }
+    else if (a == 9) {
+        number = 6;
+        a++;
+    }
+    else if (a == 10) {
         number = 2;
         a++;
     }
-    //else if (a == 2) {
-    //    number = 4;
-    //    a++;
-    //}
-    //else if (a == 3) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 4) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 5) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 6) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 7) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 8) {
-    //    number = 6;
-    //    a++;
-
-    //}
-    //else if (a == 9) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 10) {
-    //    number = 6;
-    //    a++;
-    //}
     //else if (a == 11) {
     //    number = 5;
     //    a++;

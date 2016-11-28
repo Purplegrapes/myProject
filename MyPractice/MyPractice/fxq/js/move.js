@@ -2051,40 +2051,42 @@ var secondStep = function (_this, steps) {
     //plane.style.left = x + 'px';
     //plane.style.top = y + 'px';
 }
-var Direction = function (x, y) {
-
+var Direction = function (x, y,plane) {
+   
+    var cuclass = $(plane).attr("class");
+    console.log(cuclass);
     if ((160 < y && y <= 180) && (450 <= x) && (x < 570)) {
         angle = 90;
     } else if ((430 < x && x <= 570) && (60 < y && y <= 160)) {
         angle = 0;
-    } else if ((570 <= x) && (x < 760) && (50 <= y && y <= 60)) {
+    } else if ((570 <= x) && (x < 760) && (50 <= y && y <= 60) && (cuclass !== "yellow" && x !== 665)) {
         angle = 90;
     } else if ((760 <= x && x < 780) && (60 <= y && y < 180)) {
         angle = 180; //14-18
     } else if ((780 <= x && x < 880) && (170 <= y && y <= 180)) {
         angle = 90; //18-21
-    } else if ((880 <= x && x <= 890) && (180 <= y && y < 370)) {
+    } else if ((880 <= x && x <= 890) && (180 <= y && y < 370) && (cuclass !== "blue" &&  y !== 275)) {
         angle = 180; //21-27
     } else if ((760 < x && x <= 880) && (370 <= y && y < 390)) {
         angle = 270; //27-31
     } else if ((760 <= x && x <= 770) && (390 <= y && y < 490)) {
         angle = 180; //31-34
-    } else if ((570 < x && x <= 760) && (490 <= y && y <= 500)) {
+    } else if ((570 < x && x <= 760) && (490 <= y && y <= 500) && (cuclass !== "green" && x !== 665)) {
         angle = 270; //34-40
-    } else if ((550 < x && x <= 570) && (370 < y && y <= 490)) {
+    } else if ((550 <=x && x <= 570) && (370 <= y && y <= 490)) {
         angle = 360; //40-44
     } else if ((450 < x && x <= 550) && (380 <=y && y <= 400 && y != 275)) {
         angle = 270; //44-47
-    } else if ((440 <= x && x <= 450) && (225 <= y && y < 380)) {
+    } else if ((440 <= x && x <= 450) && (215 <= y && y < 380) && (cuclass!== "red" &&  y !== 275)) {
         angle = 360; //47-1;
     }
         //黄色终点方向
-    else if (x == 665 && (50 <= y && y <= 245)) {
+    else if (x == 665 && (50 <= y && y <= 245)){
         angle = 180;
     }
         //蓝色终点方向
     else if (y == 275 && (675 <= x && x <= 890)) {
-        angle = -90;
+        angle =270;
     }
         //红色终点方向
     else if (y == 275 && (440 <= x && x <= 635)) {
@@ -2092,7 +2094,7 @@ var Direction = function (x, y) {
     }
         //绿色终点方向
     else if (x == 665 && (305 <= y && y <= 500)) {
-        angle = 0;
+        angle = 360;
     }
 }
 var endDirection = function () {
@@ -2142,7 +2144,7 @@ var Fly = function (x, y, plane) {
     console.log(plane.step);
     console.log(angle);
     if (plane.step <= 56 && plane.endStep <= 56) {
-        Direction(x, y);
+        Direction(x, y,plane);
     }
 
 
@@ -2168,7 +2170,7 @@ var fastFly = function (x, y, plane) {
         plane.step = plane.step + 4;
     }
 
-    Direction(x, y);
+    Direction(x, y,plane);
     plane.style.transform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate(' + angle + 'deg' + ')';
    
     //$(plane).animate({ left: x, top: y });
@@ -2177,109 +2179,315 @@ var fastFly = function (x, y, plane) {
 //撞机规则
 var Collision = function (plane) {
     var _this=plane;
-    for (i = 0; i < planeBox.length; i++) {
-        for (j = 0; j < planeBox.length; j++) {
-            var backPlane1 = planeBox[i].children[j];
-            var backPlane2 = planeBox[i].children[j+1];
-            var trans1 = backPlane1.style.transform.match(reg);
-            var trans2 = backPlane1.style.transform.match(reg);
-            var trans = _this.style.transform.match(reg);
+    //for (var i = 0; i < planeBox.length; i++) {
+    //    for (var j = 0; j < planeBox.length-1; j++) {
+    //        var backPlane1 = planeBox[i].children[j];
+    //        var backPlane2 = planeBox[i].children[j + 1];
+           
+    //        var trans1 = backPlane1.style.transform.match(reg);
+    //        var trans2 = backPlane2.style.transform.match(reg);
+    //        var trans = _this.style.transform.match(reg);
             
             
+    //        //如果有飞机与当前飞机位置重合，则被撞回基地
+    //       if(trans1[0]==trans2[0]&&trans1[1]==trans2[1]&&_this.className!==backPlane1.className){
+    //            if (trans[0] == trans2[0] && trans[1] == trans2[1]) {
+                    
+    //                switch (backPlane1.id) {
+
+    //                    case "red1":
+    //                        backPlane1.style.transform = 'translate(445px,55px) rotate( 90deg)';
+    //                        break;
+    //                    case "red2":
+    //                        backPlane1.style.transform = 'translate(495px,55px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red3":
+    //                        backPlane1.style.transform = 'translate(445px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red4":
+    //                        backPlane1.style.transform = 'translate(495px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "yellow1":
+    //                        backPlane1.style.transform = 'translate(835px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow2":
+    //                        backPlane1.style.transform = 'translate(885px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow3":
+    //                        backPlane1.style.transform = 'translate(835px,105px) rotate(180deg)';
+
+
+    //                        break;
+    //                    case "yellow4":
+    //                        backPlane1.style.transform = 'translate(885px,105px) rotate(180deg)';
+
+    //                        break;
+    //                    case "blue1":
+    //                        backPlane1.style.transform = 'translate(885px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue2":
+    //                        backPlane1.style.transform = 'translate(835px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue3":
+    //                        backPlane1.style.transform = 'translate(835px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue4":
+    //                        backPlane1.style.transform = 'translate(885px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "green1":
+    //                        backPlane1.style.transform = 'translate(445px,445px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green2":
+    //                        backPlane1.style.transform = 'translate(445px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green3":
+    //                        backPlane1.style.transform = 'translate(495px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green4":
+    //                        backPlane1.style.transform = 'translate(495px,445px) rotate(0deg)';
+
+    //                        break;
+    //                }
+    //                switch (backPlane2.id) {
+
+    //                    case "red1":
+    //                        backPlane2.style.transform = 'translate(445px,55px) rotate( 90deg)';
+    //                        break;
+    //                    case "red2":
+    //                        backPlane2.style.transform = 'translate(495px,55px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red3":
+    //                        backPlane2.style.transform = 'translate(445px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red4":
+    //                        backPlane2.style.transform = 'translate(495px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "yellow1":
+    //                        backPlane2.style.transform = 'translate(835px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow2":
+    //                        backPlane2.style.transform = 'translate(885px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow3":
+    //                        backPlane2.style.transform = 'translate(835px,105px) rotate(180deg)';
+
+
+    //                        break;
+    //                    case "yellow4":
+    //                        backPlane2.style.transform = 'translate(885px,105px) rotate(180deg)';
+
+    //                        break;
+    //                    case "blue1":
+    //                        backPlane2.style.transform = 'translate(885px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue2":
+    //                        backPlane2.style.transform = 'translate(835px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue3":
+    //                        backPlane2.style.transform = 'translate(835px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue4":
+    //                        backPlane2.style.transform = 'translate(885px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "green1":
+    //                        backPlane2.style.transform = 'translate(445px,445px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green2":
+    //                        backPlane2.style.transform = 'translate(445px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green3":
+    //                        backPlane2.style.transform = 'translate(495px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green4":
+    //                        backPlane2.style.transform = 'translate(495px,445px) rotate(0deg)';
+
+    //                        break;
+    //                }
+    //                switch (_this.id) {
+
+    //                    case "red1":
+    //                        _this.style.transform = 'translate(445px,55px) rotate( 90deg)';
+    //                        break;
+    //                    case "red2":
+    //                        _this.style.transform = 'translate(495px,55px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red3":
+    //                        _this.style.transform = 'translate(445px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "red4":
+    //                        backPlane2.style.transform = 'translate(495px,105px) rotate(90deg)';
+
+    //                        break;
+    //                    case "yellow1":
+    //                        _this.style.transform = 'translate(835px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow2":
+    //                        _this.style.transform = 'translate(885px,55px) rotate(180deg)';
+
+    //                        break;
+    //                    case "yellow3":
+    //                        backPlane2.style.transform = 'translate(835px,105px) rotate(180deg)';
+
+
+    //                        break;
+    //                    case "yellow4":
+    //                        _this.style.transform = 'translate(885px,105px) rotate(180deg)';
+
+    //                        break;
+    //                    case "blue1":
+    //                        _this.style.transform = 'translate(885px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue2":
+    //                        _this.style.transform = 'translate(835px,445px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue3":
+    //                        _this.style.transform = 'translate(835px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "blue4":
+    //                        _this.style.transform = 'translate(885px,495px) rotate(-90deg)';
+
+    //                        break;
+    //                    case "green1":
+    //                        _this.style.transform = 'translate(445px,445px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green2":
+    //                        _this.style.transform = 'translate(445px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green3":
+    //                        _this.style.transform = 'translate(495px,495px) rotate(0deg)';
+
+    //                        break;
+    //                    case "green4":
+    //                        _this.style.transform = 'translate(495px,445px) rotate(0deg)';
+    //                        break;
+    //                }
+    //                backPlane1.isReady = false;
+    //                backPlane1.step = 0;
+    //                backPlane2.isReady = false;
+    //                backPlane2.step = 0;
+    //                _this.isReady = false;
+    //               _this.step = 0;
+
+                    
+    //            }
+    //        }
+          
+    //    }
+    //}
+    for (var m = 0; m < planeBox.length; m++) {
+        for (var n = 0; n < planeBox.length; n++) {
+            var backPlane = planeBox[m].children[n];   
+            var transo1= backPlane.style.transform.match(reg);           
+            var transo = _this.style.transform.match(reg);
+
+
             //如果有飞机与当前飞机位置重合，则被撞回基地
-            if (trans1[0] == trans[0] && trans1[1] == trans[1]&&backPlane1.className!==_this.className) {
-                switch (backPlane1.id) {
+            if (transo1[0] == transo[0] && transo1[1] == transo[1] && backPlane.className !== _this.className) {
+                switch (backPlane.id) {
 
                     case "red1":
-                        backPlane1.style.transform = 'translate(445px,55px) rotate( 90deg)';                        
+                        backPlane.style.transform = 'translate(445px,55px) rotate( 90deg)';
                         break;
                     case "red2":
-                        backPlane1.style.transform = 'translate(495px,55px) rotate(90deg)';
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+                        backPlane.style.transform = 'translate(495px,55px) rotate(90deg)';
+
                         break;
                     case "red3":
-                        backPlane1.style.transform = 'translate(445px,105px) rotate(90deg)';
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+                        backPlane.style.transform = 'translate(445px,105px) rotate(90deg)';
+
                         break;
-                    case "red4": 
-                        backPlane1.style.transform = 'translate(495px,105px) rotate(90deg)';
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+                    case "red4":
+                        backPlane.style.transform = 'translate(495px,105px) rotate(90deg)';
+
                         break;
                     case "yellow1":
-                        backPlane1.style.transform = 'translate(835px,55px) rotate(180deg)';
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+                        backPlane.style.transform = 'translate(835px,55px) rotate(180deg)';
+
                         break;
                     case "yellow2":
-                        backPlane1.style.transform = 'translate(885px,55px) rotate(180deg)';
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+                        backPlane.style.transform = 'translate(885px,55px) rotate(180deg)';
+
                         break;
                     case "yellow3":
-                        backPlane1.style.transform = 'translate(835px,105px) rotate(180deg)';
+                        backPlane.style.transform = 'translate(835px,105px) rotate(180deg)';
 
-                        backPlane1.isReady = false;
-                        backPlane1.step = 0;
+
                         break;
                     case "yellow4":
                         backPlane.style.transform = 'translate(885px,105px) rotate(180deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "blue1":
                         backPlane.style.transform = 'translate(885px,445px) rotate(-90deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "blue2":
                         backPlane.style.transform = 'translate(835px,445px) rotate(-90deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "blue3":
                         backPlane.style.transform = 'translate(835px,495px) rotate(-90deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "blue4":
                         backPlane.style.transform = 'translate(885px,495px) rotate(-90deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "green1":
                         backPlane.style.transform = 'translate(445px,445px) rotate(0deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "green2":
                         backPlane.style.transform = 'translate(445px,495px) rotate(0deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "green3":
                         backPlane.style.transform = 'translate(495px,495px) rotate(0deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                     case "green4":
                         backPlane.style.transform = 'translate(495px,445px) rotate(0deg)';
-                        backPlane.isReady = false;
-                        backPlane.step = 0;
+
                         break;
                 }
+                backPlane.isReady = false;
+                backPlane.step = 0;
             }
 
-            else if(trans1[0]==trans2[0]&&trans1[1]==trans2[1]&&_this.className!==backPlane1.className){
-                if (trans[0] == trans1[0] && trans[1] == trans1[1]) {
-                    
-                }
-            }
-          
+         
+
         }
     }
 }
