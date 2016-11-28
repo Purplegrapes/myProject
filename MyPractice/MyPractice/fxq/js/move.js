@@ -9,6 +9,7 @@ var planes;
 var first;
 var second;
 var angle = 0;
+var reg=/\-?[0-9]+/g;
 //var _this;
 var FisrtAttr = function () {
     
@@ -238,7 +239,7 @@ var startFly = function (plane, x, y) {
         ang = 180;
     }
     else if (x == 550 && y == 510) {
-        ang = 0;
+        ang = 360;
     }
     else {
         ang = -90;
@@ -271,10 +272,11 @@ var Clicktwo = function (plane) {
     console.log("step" + _this.step);
 
     if (_this.step == 56) {
+        
         switch (index) {
             case 0: {
                 planeBox[0].score++;
-                _this.css.display = 'none';
+                
                 if (planeBox[0].score == 4) {
                     setTimeout(function () {
                         alert("红色玩家获得胜利")
@@ -326,29 +328,49 @@ var secondStep = function (_this, steps) {
             {
                 switch (steps) {
                     case 1:
-
-                        Fly(450, 180, _this);
+                        {
+                            Fly(450, 180, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
+                        }
+                       
                         break;
                     case 2:
                         Fly(485, 170, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(560, 125, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 3:
                         Fly(515, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 4:
                         Fly(550, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 5:
                         Fly(570, 160, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 6:
 
                         Fly(560, 125, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(635, 50, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
 
 
@@ -356,27 +378,44 @@ var secondStep = function (_this, steps) {
                         break;
                     case 7:
                         Fly(560, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 8:
                         Fly(570, 60, _this);
+                        Collision(_this);
                         break;
                     case 9:
                         Fly(605, 50, _this);
+                        Collision(_this);
                         break;
                     case 10:
                         Fly(635, 50, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(760, 60, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 11:
                         Fly(665, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 12:
                         Fly(695, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 13:
                         Fly(725, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 14:
                         Fly(760, 60, _this);
@@ -384,168 +423,297 @@ var secondStep = function (_this, steps) {
                             fastFly(780, 180, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(780, 370, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         });
 
                         break;
                     case 15:
                         Fly(770, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 16:
                         Fly(770, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 17:
                         Fly(760, 160, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 18:
                         Fly(780, 180, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(780, 370, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 19:
                         Fly(815, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 20:
                         Fly(845, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 21:
                         Fly(880, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 22:
                         Fly(890, 215, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(890, 335, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 23:
                         Fly(890, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 24:
                         Fly(890, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 25:
                         Fly(890, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 26:
                         Fly(890, 335, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(780, 370, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 27:
                         Fly(880, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break
                     case 28:
                         Fly(845, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 29:
                         Fly(815, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 30:
                         Fly(780, 370, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(760, 490, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 31:
                         Fly(760, 390, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 32:
                         Fly(770, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 33:
                         Fly(770, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 34:
                         Fly(760, 490, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(635, 500, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 35:
                         Fly(725, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 36:
                         Fly(695, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 37:
                         Fly(665, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 38:
                         Fly(635, 500, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(560, 425, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 39:
                         Fly(605, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 40:
                         Fly(570, 490, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 41:
                         Fly(560, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 42:
                         Fly(560, 425, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(485, 380, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 43:
                         Fly(570, 390, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 44:
                         Fly(550, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 45:
                         Fly(515, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 46:
                         Fly(485, 380, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(440, 275, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 47:
                         Fly(450, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 48:
                         Fly(440, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 49:
                         Fly(440, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 50:
                         Fly(440, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 51:
                         Fly(485, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 52:
                         Fly(515, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 53:
                         Fly(545, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 54:
                         Fly(575, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 55:
                         Fly(605, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 56:
                         Fly(635, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            _this.className+=" opacity"
+                        })
                         break;
                     case 57:
                         Fly(635, 275, _this);
                         $(_this).one(transitionEvent, function () {
                             Fly(605, 275, _this);
-                        })
+                        })                        
                         break;
                     case 58:
                         Fly(635, 275, _this);
@@ -569,6 +737,7 @@ var secondStep = function (_this, steps) {
                         Fly(635, 275, _this);
                         $(_this).one(transitionEvent, function () {
                             Fly(485, 275, _this);
+
                         })
                         break;
                         //case 62:
@@ -595,6 +764,9 @@ var secondStep = function (_this, steps) {
                     case 1:
                         {
                             Fly(760, 60, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 2:
@@ -602,26 +774,35 @@ var secondStep = function (_this, steps) {
                             Fly(770, 95, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(815, 170, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         }
                         break;
                     case 3:
                         {
                             Fly(770, 125, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 4:
                         {
                             Fly(760, 160, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 5:
                         {
                             Fly(780, 180, _this);
 
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 6:
@@ -629,32 +810,56 @@ var secondStep = function (_this, steps) {
 
                         $(_this).one(transitionEvent, function () {
                             fastFly(890, 245, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 7:
                         Fly(845, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 8:
                         Fly(880, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 9:
                         Fly(890, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 10:
                         Fly(890, 245, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(880, 370, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 11:
                         Fly(890, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 12:
                         Fly(890, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 13:
                         Fly(890, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 14:
                         Fly(880, 370, _this);
@@ -662,159 +867,289 @@ var secondStep = function (_this, steps) {
                             fastFly(760, 390, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(570, 390, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         });
                         break
                     case 15:
                         Fly(845, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 16:
                         Fly(815, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 17:
                         Fly(780, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 18:
                         Fly(760, 390, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(570, 390, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 19:
                         Fly(770, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 20:
                         Fly(770, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 21:
                         Fly(760, 490, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 22:
                         Fly(725, 500, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(605, 500, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 23:
                         Fly(695, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 24:
                         Fly(665, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 25:
                         Fly(635, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 26:
                         Fly(605, 500, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(570, 390, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 27:
                         Fly(570, 490, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 28:
                         Fly(560, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 29:
                         Fly(560, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 30:
                         Fly(570, 390, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(450, 370, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 31:
                         Fly(550, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 32:
                         Fly(515, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 33:
                         Fly(485, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 34:
                         Fly(450, 370, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(440, 245, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 35:
                         Fly(440, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 36:
                         Fly(440, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 37:
                         Fly(440, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 38:
                         Fly(440, 245, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(515, 170, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 39:
                         Fly(440, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 40:
+
                         Fly(450, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 41:
                         Fly(485, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 42:
                         Fly(515, 170, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(560, 95, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 43:
                         Fly(550, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 44:
                         Fly(570, 160, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 45:
                         Fly(560, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 46:
                         Fly(560, 95, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(665, 50, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 47:
                         Fly(570, 60, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 48:
                         Fly(605, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 49:
                         Fly(635, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 50:
                         Fly(665, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 51:
                         Fly(665, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 52:
                         Fly(665, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 53:
                         Fly(665, 155, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 54:
                         Fly(665, 185, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 55:
                         Fly(665, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 56:
                         Fly(665, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            _this.className += " opacity"
+                        })
                         break;
                     case 57:
                         Fly(665, 245, _this);
@@ -855,6 +1190,9 @@ var secondStep = function (_this, steps) {
                     case 1:
                         {
                             Fly(880, 370, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 2:
@@ -862,25 +1200,34 @@ var secondStep = function (_this, steps) {
                             Fly(845, 380, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(770, 425, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         }
                         break;
                     case 3:
                         {
                             Fly(815, 380, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 4:
                         {
                             Fly(780, 370, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 5:
                         {
                             Fly(760, 390, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
 
                         }
                         break;
@@ -888,32 +1235,56 @@ var secondStep = function (_this, steps) {
                         Fly(770, 425, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(695, 500, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 7:
                         Fly(770, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 8:
                         Fly(760, 490, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 9:
                         Fly(725, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 10:
                         Fly(695, 500, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(570, 490, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 11:
                         Fly(665, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 12:
                         Fly(635, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 13:
                         Fly(605, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 14:
                         Fly(570, 490, _this);
@@ -921,92 +1292,164 @@ var secondStep = function (_this, steps) {
                             fastFly(550, 370, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(550, 180, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         })
                         break;
                     case 15:
                         Fly(560, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 16:
                         Fly(560, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 17:
                         Fly(570, 390, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 18:
                         Fly(550, 370, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(550, 180, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 19:
                         Fly(515, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 20:
                         Fly(485, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 21:
                         Fly(450, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 22:
                         Fly(440, 335, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(440, 215, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 23:
                         Fly(440, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 24:
                         Fly(440, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 25:
                         Fly(440, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 26:
                         Fly(440, 215, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(550, 180, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 27:
                         Fly(450, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 28:
                         Fly(485, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 29:
                         Fly(515, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 30:
                         Fly(550, 180, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(570, 60, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 31:
                         Fly(570, 160, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 32:
                         Fly(560, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 33:
                         Fly(560, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 34:
                         Fly(570, 60, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(695, 50, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 35:
                         Fly(605, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 36:
                         Fly(635, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 37:
                         Fly(665, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 38:
                         Fly(695, 50, _this);
@@ -1016,65 +1459,119 @@ var secondStep = function (_this, steps) {
                         break;
                     case 39:
                         Fly(725, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 40:
                         Fly(760, 60, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 41:
                         Fly(770, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 42:
                         Fly(770, 125, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(845, 170, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 43:
                         Fly(760, 160, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 44:
                         Fly(780, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 45:
                         Fly(815, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 46:
                         Fly(845, 170, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(890, 275, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
 
                     case 47:
                         Fly(880, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 48:
                         Fly(890, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 49:
                         Fly(890, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 50:
                         Fly(890, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 51:
                         Fly(845, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 52:
                         Fly(815, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 53:
                         Fly(785, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 54:
                         Fly(755, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 55:
                         Fly(725, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 56: {
                         Fly(695, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            _this.className += " opacity"
+                        })
 
                     }
 
@@ -1130,7 +1627,9 @@ var secondStep = function (_this, steps) {
                         {
 
                             Fly(570, 490, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 2:
@@ -1138,57 +1637,90 @@ var secondStep = function (_this, steps) {
                             Fly(560, 455, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(515, 380, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         }
                         break;
                     case 3:
                         {
                             Fly(560, 425, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 4:
                         {
                             Fly(570, 390, _this);
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 5:
                         {
                             Fly(550, 370, _this);
 
-
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         }
                         break;
                     case 6:
                         Fly(515, 380, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(440, 305, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 7:
                         Fly(485, 380, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 8:
                         Fly(450, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 9:
                         Fly(440, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 10:
                         Fly(440, 305, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(450, 180, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 11:
                         Fly(440, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 12:
                         Fly(440, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 13:
                         Fly(440, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 14:
                         Fly(450, 180, _this);
@@ -1196,124 +1728,218 @@ var secondStep = function (_this, steps) {
                             fastFly(570, 160, _this);
                             $(_this).one(transitionEvent, function () {
                                 fastFly(760, 160, _this);
+                                $(_this).one(transitionEvent, function () {
+                                    Collision(_this);
+                                })
                             })
                         })
                         break;
                     case 15:
                         Fly(485, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 16:
                         Fly(515, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 17:
                         Fly(550, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 18:
                         Fly(570, 160, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(760, 160, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 19:
                         Fly(560, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 20:
                         Fly(560, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 21:
                         Fly(570, 60, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 22:
                         Fly(605, 50, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(725, 50, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 23:
                         Fly(635, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 24:
                         Fly(665, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 25:
                         Fly(695, 50, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 26:
                         Fly(725, 50, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(760, 160, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 27:
                         Fly(760, 60, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 28:
                         Fly(770, 95, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 29:
                         Fly(770, 125, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 30:
                         Fly(760, 160, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(880, 180, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 31:
                         Fly(780, 180, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 32:
                         Fly(815, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 33:
                         Fly(845, 170, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
 
                     case 34:
                         Fly(880, 180, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(890, 305, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
 
                     case 35:
                         Fly(890, 215, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 36:
                         Fly(890, 245, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 37:
                         Fly(890, 275, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 38:
                         Fly(890, 305, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(815, 380, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 39:
                         Fly(890, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 40:
                         Fly(880, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break
                     case 41:
                         Fly(845, 380, _this);
+                        Collision(_this);
                         break;
                     case 42:
                         Fly(815, 380, _this);
                         $(_this).one(transitionEvent, function () {
                             fastFly(770, 455, _this);
+                            $(_this).one(transitionEvent, function () {
+                                Collision(_this);
+                            })
                         })
                         break;
                     case 43:
                         Fly(780, 370, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 44:
                         Fly(760, 390, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 45:
                         Fly(770, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 46:
                         Fly(770, 455, _this);
@@ -1323,33 +1949,63 @@ var secondStep = function (_this, steps) {
                         break;
                     case 47:
                         Fly(760, 490, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 48:
                         Fly(725, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 49:
                         Fly(695, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 50:
                         Fly(665, 500, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break
                     case 51:
                         Fly(665, 455, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 52:
                         Fly(665, 425, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 53:
                         Fly(665, 395, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 54:
                         Fly(665, 365, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 55:
                         Fly(665, 335, _this);
+                        $(_this).one(transitionEvent, function () {
+                            Collision(_this);
+                        })
                         break;
                     case 56:
                         Fly(665, 305, _this);
+                        $(_this).one(transitionEvent, function () {
+                            _this.className += " opacity"
+                        })
                         break;
                     case 57:
                         Fly(665, 305, _this);
@@ -1417,7 +2073,7 @@ var Direction = function (x, y) {
         angle = 270; //34-40
     } else if ((550 < x && x <= 570) && (370 < y && y <= 490)) {
         angle = 360; //40-44
-    } else if ((450 < x && x <= 550) && (180 < y && y <= 380 && y != 275)) {
+    } else if ((450 < x && x <= 550) && (380 <=y && y <= 400 && y != 275)) {
         angle = 270; //44-47
     } else if ((440 <= x && x <= 450) && (225 <= y && y < 380)) {
         angle = 360; //47-1;
@@ -1501,18 +2157,129 @@ var Fly = function (x, y, plane) {
 
 }
 
-//
+//跳跃规则
 var fastFly = function (x, y, plane) {
-
+    //飞棋
     if (plane.step == 18) {
         plane.step = plane.step + 12;
     }
+        //跳子
     else {
         plane.step = plane.step + 4;
     }
 
     Direction(x, y);
     plane.style.transform = 'translate(' + (x + 'px') + ',' + (y + 'px') + ')' + 'rotate(' + angle + 'deg' + ')';
+   
     //$(plane).animate({ left: x, top: y });
 
+}
+//撞机规则
+var Collision = function (plane) {
+    var _this=plane;
+    for (i = 0; i < planeBox.length; i++) {
+        for (j = 0; j < planeBox.length; j++) {
+            var backPlane1 = planeBox[i].children[j];
+            var backPlane2 = planeBox[i].children[j+1];
+            var trans1 = backPlane1.style.transform.match(reg);
+            var trans2 = backPlane1.style.transform.match(reg);
+            var trans = _this.style.transform.match(reg);
+            
+            
+            //如果有飞机与当前飞机位置重合，则被撞回基地
+            if (trans1[0] == trans[0] && trans1[1] == trans[1]&&backPlane1.className!==_this.className) {
+                switch (backPlane1.id) {
+
+                    case "red1":
+                        backPlane1.style.transform = 'translate(445px,55px) rotate( 90deg)';                        
+                        break;
+                    case "red2":
+                        backPlane1.style.transform = 'translate(495px,55px) rotate(90deg)';
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "red3":
+                        backPlane1.style.transform = 'translate(445px,105px) rotate(90deg)';
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "red4": 
+                        backPlane1.style.transform = 'translate(495px,105px) rotate(90deg)';
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "yellow1":
+                        backPlane1.style.transform = 'translate(835px,55px) rotate(180deg)';
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "yellow2":
+                        backPlane1.style.transform = 'translate(885px,55px) rotate(180deg)';
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "yellow3":
+                        backPlane1.style.transform = 'translate(835px,105px) rotate(180deg)';
+
+                        backPlane1.isReady = false;
+                        backPlane1.step = 0;
+                        break;
+                    case "yellow4":
+                        backPlane.style.transform = 'translate(885px,105px) rotate(180deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "blue1":
+                        backPlane.style.transform = 'translate(885px,445px) rotate(-90deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "blue2":
+                        backPlane.style.transform = 'translate(835px,445px) rotate(-90deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "blue3":
+                        backPlane.style.transform = 'translate(835px,495px) rotate(-90deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "blue4":
+                        backPlane.style.transform = 'translate(885px,495px) rotate(-90deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "green1":
+                        backPlane.style.transform = 'translate(445px,445px) rotate(0deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "green2":
+                        backPlane.style.transform = 'translate(445px,495px) rotate(0deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "green3":
+                        backPlane.style.transform = 'translate(495px,495px) rotate(0deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                    case "green4":
+                        backPlane.style.transform = 'translate(495px,445px) rotate(0deg)';
+                        backPlane.isReady = false;
+                        backPlane.step = 0;
+                        break;
+                }
+            }
+
+            else if(trans1[0]==trans2[0]&&trans1[1]==trans2[1]&&_this.className!==backPlane1.className){
+                if (trans[0] == trans1[0] && trans[1] == trans1[1]) {
+                    
+                }
+            }
+          
+        }
+    }
 }

@@ -90,14 +90,14 @@ function change() {
         arr[i] = temp;
     }
     $('.container').html(arr);
-    //if (a == 0) {
-    //    number = 6;
-    //    a++;
-    //}
-    //else if (a == 1) {
-    //    number = 6;
-    //    a++;
-    //}
+    if (a == 0) {
+        number = 6;
+        a++;
+    }
+    else if (a == 1) {
+        number = 2;
+        a++;
+    }
     //else if (a == 2) {
     //    number = 4;
     //    a++;
@@ -141,9 +141,11 @@ function change() {
     //}
 
 
-
-    
+    else {
         number = parseInt(arr[1].getAttribute("data-num"));
+    }
+    
+        
     
     
     
