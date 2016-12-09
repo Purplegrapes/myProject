@@ -122,6 +122,11 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="compare\index.html" />
+    <Content Include="compare\myProject.js" />
+    <Content Include="compare\myTest.js" />
+    <Content Include="compare\qunit.css" />
+    <Content Include="compare\qunit.js" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\task11.css" />
     <Content Include="css\task8.css" />
